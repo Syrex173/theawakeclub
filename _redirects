@@ -1,0 +1,12 @@
+# Cloudflare Pages / Netlify _redirects
+# go4amclub.com → theawakeclub.com/find-your-4am
+
+# If go4amclub.com is pointed at the same Cloudflare Pages project:
+https://go4amclub.com/* https://theawakeclub.com/find-your-4am.html 301!
+
+# Internal convenience redirect
+/find-your-4am /find-your-4am.html 301
+/start-here /start-here.html 301
+/tools /tools.html 301
+/daily-growth /daily-growth.html 301
+/4am /find-your-4am.html 301
