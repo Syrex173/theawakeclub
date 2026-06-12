@@ -1,7 +1,12 @@
 /* ============================================
-   THE AWAKE CLUB — style.css  v1.1
-   QA: mobile quiz fix, checklist click fix,
-       nav overflow, image crop improvements
+   THE AWAKE CLUB — style.css  v1.2
+   Changes from v1.1:
+   - Gym section: mobile faded-background image fix
+   - Quiz: progress bar, 5-option layout polish
+   - Article cards: "Writing in Progress" state
+   - Email form: consistent structure
+   - Manifesto / Community: mobile single-col collapse
+   - General mobile QA passes
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,700&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
@@ -58,7 +63,6 @@ ul { list-style: none; }
   content: ''; display: block; width: 28px; height: 1px;
   background: var(--orange); flex-shrink: 0;
 }
-
 .eyebrow { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); }
 
 /* ---- BUTTONS ---- */
@@ -68,6 +72,7 @@ ul { list-style: none; }
   letter-spacing: 0.1em; text-transform: uppercase;
   padding: 14px 32px; cursor: pointer; border: none;
   transition: all 0.2s ease; position: relative; text-decoration: none;
+  min-height: 44px;
 }
 .btn-primary { background: var(--orange); color: #000; }
 .btn-primary:hover { background: #ff7228; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(245,95,13,0.3); }
@@ -82,9 +87,7 @@ ul { list-style: none; }
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   height: var(--nav-height);
   display: flex; align-items: center; justify-content: space-between;
-  /* FIX: prevent overflow on narrow viewports */
-  padding: 0 48px;
-  min-width: 0;
+  padding: 0 48px; min-width: 0;
   background: rgba(12,12,12,0.93);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--rule);
@@ -96,7 +99,6 @@ ul { list-style: none; }
   white-space: nowrap; flex-shrink: 0;
 }
 .nav-logo .accent { color: var(--orange); }
-
 .nav-links { display: flex; align-items: center; gap: 28px; }
 .nav-links a {
   font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
@@ -108,44 +110,32 @@ ul { list-style: none; }
   padding: 8px 20px;
   font-family: var(--font-display); font-weight: 700 !important;
   font-size: 0.78rem !important; letter-spacing: 0.1em !important;
+  min-height: 36px;
 }
 .nav-cta:hover { background: #ff7228 !important; }
 
-/* FIX: Hamburger — min tap target 44px */
 .nav-toggle {
   display: none; flex-direction: column; gap: 5px; cursor: pointer;
   background: none; border: none;
-  padding: 10px; /* increases tap area */
-  min-width: 44px; min-height: 44px;
+  padding: 10px; min-width: 44px; min-height: 44px;
   align-items: center; justify-content: center;
 }
 .nav-toggle span { display: block; width: 24px; height: 1.5px; background: var(--white); transition: all 0.3s; }
 
-/* Mobile nav — FIX: no overflow, properly contained */
 .nav-mobile {
-  display: none;
-  position: fixed;
+  display: none; position: fixed;
   top: var(--nav-height); left: 0; right: 0;
-  /* FIX: full viewport width, no overflow */
   width: 100%; max-width: 100vw;
-  background: var(--charcoal);
-  border-bottom: 1px solid var(--rule);
-  padding: 24px 20px;
-  z-index: 199;
-  flex-direction: column; gap: 4px;
-  /* FIX: prevent body scroll when open */
-  overflow-y: auto;
+  background: var(--charcoal); border-bottom: 1px solid var(--rule);
+  padding: 24px 20px; z-index: 199;
+  flex-direction: column; gap: 4px; overflow-y: auto;
 }
 .nav-mobile.open { display: flex; }
 .nav-mobile a {
   font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--silver); font-family: var(--font-display); font-weight: 700;
-  transition: color 0.2s;
-  /* FIX: 44px min tap target on mobile */
-  padding: 12px 8px;
-  border-bottom: 1px solid var(--rule);
-  display: block;
-  min-height: 44px;
+  transition: color 0.2s; padding: 12px 8px;
+  border-bottom: 1px solid var(--rule); display: block; min-height: 44px;
 }
 .nav-mobile a:last-child { border-bottom: none; }
 .nav-mobile a:hover { color: var(--orange); }
@@ -190,7 +180,6 @@ section { border-bottom: 1px solid var(--rule); }
 .body-text { font-size: 0.97rem; font-weight: 300; color: var(--steel); line-height: 1.8; }
 .body-text strong { color: var(--silver); font-weight: 500; }
 
-/* ---- DIVIDERS ---- */
 .hr-rule { border: none; border-top: 1px solid var(--rule); margin: 48px 0; }
 
 /* ---- PRINCIPLE STACK ---- */
@@ -244,35 +233,59 @@ section { border-bottom: 1px solid var(--rule); }
 .tool-arrow { position: absolute; top: 28px; right: 24px; font-size: 1rem; color: var(--rule-light); transition: color 0.2s, transform 0.2s; }
 .tool-card:hover .tool-arrow { color: var(--orange); transform: translate(2px, -2px); }
 
-/* ---- ARTICLE CARDS ---- */
+/* ---- ARTICLE CARDS (V1.2: Writing in Progress state) ---- */
 .article-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .article-card {
   background: var(--charcoal); padding: 28px 24px;
   border: 1px solid var(--rule); display: flex; flex-direction: column; gap: 10px;
-  transition: border-color 0.2s, background 0.2s; text-decoration: none; color: inherit;
-  /* FIX: remove pointer cursor since cards don't navigate yet */
-  cursor: default;
+  color: inherit;
 }
-/* FIX: no hover highlight since cards don't go anywhere in V1 */
+/* Clickable cards (index.html preview uses <a> links to daily-growth) */
+a.article-card {
+  text-decoration: none; cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+a.article-card:hover { border-color: var(--rule-light); background: var(--dark); }
+a.article-card:hover .article-cta { color: var(--orange); }
+
+/* Non-link cards (daily-growth page, coming soon) */
+article.article-card { cursor: default; }
+
 .article-cat { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); }
 .article-title { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--white); line-height: 1.2; }
 .article-summary { font-size: 0.84rem; font-weight: 300; color: var(--muted); line-height: 1.7; flex: 1; }
-/* FIX: "Coming Soon" label instead of fake "Read →" CTA */
+
+/* V1.2: "Writing in Progress" label */
 .article-cta {
   font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--steel); margin-top: 4px;
+  transition: color 0.2s;
+}
+.article-wip {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--muted); margin-top: 4px;
+  display: flex; align-items: center; gap: 6px;
+}
+.article-wip::before {
+  content: ''; display: block;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--orange); opacity: 0.5; flex-shrink: 0;
 }
 
 /* ---- EMAIL CAPTURE ---- */
 .email-section { background: var(--charcoal); }
 .email-inner { max-width: 640px; margin: 0 auto; text-align: center; padding: 96px 48px; }
+
+/*
+  V1.2: Consistent email form structure across all pages.
+  Forms are identified by data-form-id for future provider hookup.
+  Integration point: replace action="#" and add provider fetch in script.js.
+*/
 .email-form { display: flex; gap: 0; margin: 32px auto 12px; max-width: 500px; }
 .email-form input[type="email"] {
   flex: 1; background: var(--mid); border: 1px solid var(--rule-light); border-right: none;
   color: var(--white); font-family: var(--font-body); font-size: 0.9rem;
-  padding: 14px 20px; outline: none; transition: border-color 0.2s;
-  /* FIX: prevent shrinking below readable size on mobile */
-  min-width: 0;
+  padding: 14px 20px; outline: none; transition: border-color 0.2s; min-width: 0;
 }
 .email-form input[type="email"]:focus { border-color: var(--orange); }
 .email-form input[type="email"]::placeholder { color: var(--muted); }
@@ -281,14 +294,14 @@ section { border-bottom: 1px solid var(--rule); }
   font-family: var(--font-display); font-weight: 700; font-size: 0.9rem;
   letter-spacing: 0.1em; text-transform: uppercase;
   padding: 14px 28px; cursor: pointer; white-space: nowrap;
-  transition: background 0.2s;
-  /* FIX: 44px min tap target */
-  min-height: 44px;
+  transition: background 0.2s; min-height: 44px;
 }
 .email-form button:hover { background: #ff7228; }
+/* Success state */
+.email-form button.sent { background: #2a8a4a; color: #fff; cursor: default; }
 .email-fine { font-size: 0.73rem; color: var(--muted); letter-spacing: 0.06em; }
 
-/* ---- BLOCKQUOTE / PULL QUOTE ---- */
+/* ---- BLOCKQUOTE ---- */
 .pull-quote { border-left: 3px solid var(--orange); padding: 16px 0 16px 28px; margin: 40px 0; }
 .pull-quote p { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.3rem, 2.2vw, 1.8rem); text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); line-height: 1.25; }
 
@@ -296,79 +309,147 @@ section { border-bottom: 1px solid var(--rule); }
 .img-overlay { position: relative; overflow: hidden; }
 .img-overlay img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .img-overlay::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(12,12,12,0.88) 0%, rgba(12,12,12,0.3) 60%, transparent 100%); pointer-events: none; }
-.img-overlay.overlay-bottom::after { background: linear-gradient(to top, rgba(12,12,12,0.9) 0%, rgba(12,12,12,0.4) 50%, transparent 100%); }
 .img-overlay.overlay-uniform::after { background: rgba(12,12,12,0.6); }
 
 /* ============================================
-   QUIZ — Mobile-first approach (FIX #1)
+   QUIZ STYLES (V1.2)
+   - Progress bar added
+   - 5 options per question
+   - Cleaner result card
    ============================================ */
+.quiz-progress-wrap {
+  margin-bottom: 28px;
+}
+.quiz-progress-label {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--muted);
+}
+.quiz-progress-bar {
+  height: 3px; background: var(--rule);
+  position: relative; overflow: hidden;
+}
+.quiz-progress-fill {
+  height: 100%; background: var(--orange);
+  transition: width 0.35s ease; width: 0%;
+}
+
 .quiz-question {
   border: 1px solid var(--rule);
   padding: 28px 24px 24px;
   margin-bottom: 16px;
   background: var(--charcoal);
+  /* V1.2: hide questions by default, show active */
+  display: none;
 }
+.quiz-question.active { display: block; }
+
 .quiz-q-text {
   font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
   text-transform: uppercase; letter-spacing: 0.04em; color: var(--white);
-  margin-bottom: 16px; line-height: 1.3;
+  margin-bottom: 18px; line-height: 1.3;
 }
 .quiz-q-num { color: var(--orange); margin-right: 8px; }
 
 .quiz-options { display: flex; flex-direction: column; gap: 8px; }
 
-/* FIX: quiz option rows — full width, proper tap targets, no cramping */
+/* V1.2: 5 options — each is a button-style label */
 .quiz-option {
   display: flex; align-items: flex-start; gap: 12px;
-  padding: 12px 16px;
-  border: 1px solid var(--rule); cursor: pointer;
+  padding: 12px 16px; border: 1px solid var(--rule); cursor: pointer;
   transition: border-color 0.18s, background 0.18s;
-  background: var(--dark);
-  /* FIX: min tap target */
-  min-height: 44px;
-  width: 100%;
+  background: var(--dark); min-height: 44px; width: 100%;
+  border-radius: 0;
 }
 .quiz-option:hover { border-color: var(--orange-border); background: var(--orange-glow); }
+.quiz-option.selected { border-color: var(--orange); background: var(--orange-glow); }
+
 .quiz-option input[type="radio"] {
   accent-color: var(--orange);
-  /* FIX: larger click target for the radio itself */
-  width: 18px; height: 18px;
-  min-width: 18px; min-height: 18px;
-  flex-shrink: 0; margin-top: 3px;
-  cursor: pointer;
+  width: 18px; height: 18px; min-width: 18px;
+  flex-shrink: 0; margin-top: 3px; cursor: pointer;
 }
 .quiz-option label {
   font-size: 0.88rem; color: var(--silver); cursor: pointer;
-  line-height: 1.5;
-  /* FIX: label takes full remaining width for click area */
-  flex: 1;
-  display: block;
+  line-height: 1.5; flex: 1; display: block;
 }
 
-/* FIX: quiz result card — full width, readable on mobile */
+/* Quiz navigation buttons */
+.quiz-nav {
+  display: flex; gap: 10px; margin-top: 20px; align-items: center;
+}
+.quiz-nav-back {
+  background: transparent; color: var(--steel); border: 1px solid var(--rule);
+  font-family: var(--font-display); font-weight: 700; font-size: 0.82rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 12px 24px; cursor: pointer; transition: all 0.2s;
+  min-height: 44px;
+}
+.quiz-nav-back:hover { border-color: var(--steel); color: var(--white); }
+.quiz-nav-next {
+  background: var(--orange); color: #000; border: none;
+  font-family: var(--font-display); font-weight: 700; font-size: 0.9rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 12px 28px; cursor: pointer; transition: background 0.2s;
+  min-height: 44px; flex: 1;
+}
+.quiz-nav-next:hover { background: #ff7228; }
+.quiz-nav-next:disabled { opacity: 0.4; cursor: default; }
+
+/* Result card (V1.2: richer structure) */
 .quiz-result-card {
-  background: var(--charcoal);
-  border: 1px solid var(--orange-border);
-  padding: 32px 24px;
-  margin-top: 8px;
-  /* FIX: no overflow, full width */
-  width: 100%;
-  box-sizing: border-box;
+  background: var(--charcoal); border: 1px solid var(--orange-border);
+  padding: 36px 32px; margin-top: 8px; width: 100%; box-sizing: border-box;
+}
+.quiz-result-type {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--orange); margin-bottom: 10px;
+}
+.quiz-result-name {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3rem); text-transform: uppercase;
+  color: var(--white); line-height: 0.95; margin-bottom: 16px;
+}
+.quiz-result-tagline {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--orange); margin-bottom: 20px; line-height: 1.35;
+}
+.quiz-result-body {
+  font-size: 0.94rem; font-weight: 300; color: var(--steel);
+  line-height: 1.8; margin-bottom: 24px;
+}
+.quiz-result-meta {
+  display: flex; flex-direction: column; gap: 10px;
+  border-top: 1px solid var(--rule); padding-top: 20px; margin-bottom: 28px;
+}
+.quiz-result-row {
+  display: grid; grid-template-columns: 120px 1fr; gap: 12px;
+  align-items: baseline;
+}
+.quiz-result-row-label {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+}
+.quiz-result-row-val {
+  font-size: 0.88rem; font-weight: 300; color: var(--silver); line-height: 1.55;
+}
+.quiz-result-actions {
+  display: flex; gap: 12px; flex-wrap: wrap;
 }
 
-/* ---- CATEGORY PILLS ---- */
+/* ---- CATEGORY TABS ---- */
 .category-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
 .category-tab {
   font-family: var(--font-display); font-size: 0.78rem; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 18px;
   border: 1px solid var(--rule); color: var(--steel); cursor: pointer;
-  transition: all 0.18s; background: none;
-  /* FIX: min tap target */
-  min-height: 44px;
+  transition: all 0.18s; background: none; min-height: 44px;
 }
 .category-tab:hover, .category-tab.active { border-color: var(--orange-border); color: var(--orange); background: var(--orange-glow); }
 
-/* ---- COMMUNITY SECTION ---- */
+/* ---- COMMUNITY ---- */
 .community-section { background: var(--dark); }
 .check-in-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 40px 0; }
 .check-item { background: var(--charcoal); padding: 24px 20px; text-align: center; }
@@ -389,16 +470,7 @@ section { border-bottom: 1px solid var(--rule); }
 .footer-disclaimer { font-size: 0.73rem; color: var(--muted); line-height: 1.7; max-width: 680px; }
 .footer-copy { font-size: 0.72rem; color: var(--rule-light); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
 
-/* ---- HERO GHOST TEXT ---- */
-.hero-ghost { position: absolute; pointer-events: none; user-select: none; font-family: var(--font-display); font-weight: 900; text-transform: uppercase; color: rgba(255,255,255,0.022); letter-spacing: -0.02em; line-height: 0.85; z-index: 0; }
-
-/* ---- STAT/NUMBER CALLOUT ---- */
-.stat-row { display: flex; gap: 0; border: 1px solid var(--rule); background: var(--rule); }
-.stat-item { flex: 1; background: var(--charcoal); padding: 28px 24px; text-align: center; }
-.stat-num { font-family: var(--font-display); font-weight: 900; font-size: 2.8rem; line-height: 1; color: var(--orange); margin-bottom: 6px; }
-.stat-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-
-/* ---- INDEX HERO ---- */
+/* ---- HERO INDEX ---- */
 .hero-index {
   position: relative; min-height: 100vh;
   display: flex; flex-direction: column; justify-content: center;
@@ -406,9 +478,7 @@ section { border-bottom: 1px solid var(--rule); }
 }
 .hero-index .hero-bg { position: absolute; inset: 0; z-index: 0; }
 .hero-index .hero-bg img {
-  width: 100%; height: 100%; object-fit: cover;
-  /* FIX: center-top crop keeps subjects in frame */
-  object-position: center 20%;
+  width: 100%; height: 100%; object-fit: cover; object-position: center 20%;
   filter: brightness(0.38) saturate(0.7);
 }
 .hero-index .hero-bg::after {
@@ -425,25 +495,48 @@ section { border-bottom: 1px solid var(--rule); }
 .bridge-section { position: relative; overflow: hidden; background: var(--charcoal); }
 .bridge-bg-num { position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-family: var(--font-display); font-weight: 900; font-size: clamp(12rem, 22vw, 26rem); color: rgba(245,95,13,0.04); line-height: 1; pointer-events: none; user-select: none; letter-spacing: -0.04em; }
 
-/* ---- GYM SECTION ---- */
-.gym-section { background: var(--charcoal); }
+/* ============================================
+   GYM SECTION — V1.2 MOBILE FIX
+   Desktop: two-column (photo left, text right)
+   Mobile: faded background image behind text
+   ============================================ */
+.gym-section { background: var(--charcoal); position: relative; }
+
+/* The desktop photo panel (left col) */
 .gym-photo-panel { position: relative; overflow: hidden; }
 .gym-photo-panel img {
-  width: 100%; height: 100%; object-fit: cover;
-  /* FIX: center-top keeps subjects visible */
-  object-position: center 15%;
+  width: 100%; height: 100%; object-fit: cover; object-position: center 15%;
   display: block; min-height: 440px;
   filter: brightness(0.75) saturate(0.85);
 }
-.gym-photo-panel::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, transparent 40%, var(--charcoal) 100%); }
+.gym-photo-panel::before {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to right, transparent 40%, var(--charcoal) 100%);
+}
 
-/* ---- FIND YOUR 4AM PAGE ---- */
+/*
+  V1.2: Mobile gym background image.
+  Hidden on desktop (handled via .gym-bg-mobile display:none).
+  On mobile, the element appears and provides a faded background.
+*/
+.gym-bg-mobile {
+  display: none; /* hidden on desktop */
+  position: absolute; inset: 0; z-index: 0; overflow: hidden;
+}
+.gym-bg-mobile img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 15%;
+  filter: brightness(0.22) saturate(0.6);
+}
+.gym-bg-mobile::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(20,20,20,0.4) 0%, rgba(20,20,20,0.85) 100%);
+}
+
+/* 4AM HERO PAGE ---- */
 .fam-hero { position: relative; overflow: hidden; background: var(--charcoal); }
 .fam-hero-img { position: absolute; right: 0; top: 0; bottom: 0; width: 50%; overflow: hidden; }
 .fam-hero-img img {
-  width: 100%; height: 100%; object-fit: cover;
-  /* FIX: center 20% keeps subjects in upper portion of frame */
-  object-position: center 20%;
+  width: 100%; height: 100%; object-fit: cover; object-position: center 20%;
   filter: brightness(0.55) saturate(0.8);
 }
 .fam-hero-img::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, var(--charcoal) 0%, transparent 40%); }
@@ -464,53 +557,32 @@ section { border-bottom: 1px solid var(--rule); }
 .step-body { font-size: 0.88rem; font-weight: 300; color: var(--muted); line-height: 1.75; }
 .step-item .btn { margin-top: 16px; font-size: 0.82rem; padding: 10px 22px; }
 
-/* ============================================
-   CHECKLIST — FIX #2 (full-row click area)
-   ============================================ */
+/* ---- CHECKLIST ---- */
 .checklist-widget { background: var(--dark); border: 1px solid var(--rule); padding: 28px; }
-
-/* FIX: whole row is a label for the checkbox — removes need for onclick */
 .checklist-item {
   display: flex; align-items: flex-start; gap: 14px;
   padding: 14px 0; border-bottom: 1px solid var(--rule);
-  /* FIX: make the entire row clickable */
-  cursor: pointer;
-  /* FIX: min tap target */
-  min-height: 44px;
+  cursor: pointer; min-height: 44px;
 }
 .checklist-item:last-child { border-bottom: none; }
-
 .checklist-item input[type="checkbox"] {
-  accent-color: var(--orange);
-  /* FIX: larger hit area */
-  width: 20px; height: 20px; min-width: 20px;
-  flex-shrink: 0; margin-top: 2px;
-  cursor: pointer;
+  accent-color: var(--orange); width: 20px; height: 20px; min-width: 20px;
+  flex-shrink: 0; margin-top: 2px; cursor: pointer;
 }
-
 .checklist-label {
   font-family: var(--font-display); font-weight: 700; font-size: 0.95rem;
   text-transform: uppercase; letter-spacing: 0.05em; color: var(--white);
-  transition: color 0.2s;
-  /* FIX: label takes full width for pointer events */
-  cursor: pointer; flex: 1;
-  line-height: 1.3;
+  transition: color 0.2s; cursor: pointer; flex: 1; line-height: 1.3;
 }
 .checklist-item.checked .checklist-label { color: var(--muted); text-decoration: line-through; }
 
-/* ---- TIMER WIDGET ---- */
+/* ---- TIMER ---- */
 .timer-widget { background: var(--dark); border: 1px solid var(--rule); padding: 36px 28px 32px; text-align: center; }
 .timer-display { font-family: var(--font-display); font-weight: 900; font-size: clamp(3.5rem, 8vw, 6rem); color: var(--white); letter-spacing: 0.04em; line-height: 1; margin: 20px 0; font-variant-numeric: tabular-nums; }
 .timer-display.running { color: var(--orange); }
 .timer-display.done { color: #2a8a4a; }
 .timer-presets { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
-.timer-preset {
-  font-family: var(--font-display); font-weight: 700; font-size: 0.82rem;
-  letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 16px;
-  border: 1px solid var(--rule-light); background: var(--charcoal);
-  color: var(--steel); cursor: pointer; transition: all 0.18s;
-  min-height: 44px;
-}
+.timer-preset { font-family: var(--font-display); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 16px; border: 1px solid var(--rule-light); background: var(--charcoal); color: var(--steel); cursor: pointer; transition: all 0.18s; min-height: 44px; }
 .timer-preset:hover, .timer-preset.active { border-color: var(--orange-border); color: var(--orange); background: var(--orange-glow); }
 .timer-controls { display: flex; gap: 10px; justify-content: center; margin-top: 16px; }
 .timer-cue { font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-top: 20px; min-height: 1.4rem; transition: color 0.3s; }
@@ -518,15 +590,13 @@ section { border-bottom: 1px solid var(--rule); }
 
 /* ---- ANIMATIONS ---- */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 .anim-1 { animation: fadeUp 0.65s ease 0.1s both; }
 .anim-2 { animation: fadeUp 0.65s ease 0.22s both; }
 .anim-3 { animation: fadeUp 0.65s ease 0.38s both; }
 .anim-4 { animation: fadeUp 0.65s ease 0.54s both; }
-.anim-5 { animation: fadeUp 0.65s ease 0.68s both; }
 
 /* ============================================
-   RESPONSIVE
+   RESPONSIVE — 1024px
    ============================================ */
 @media (max-width: 1024px) {
   .container { padding: 0 32px; }
@@ -537,7 +607,7 @@ section { border-bottom: 1px solid var(--rule); }
 }
 
 /* ============================================
-   MOBILE BREAKPOINT — primary QA target
+   MOBILE — 768px
    ============================================ */
 @media (max-width: 768px) {
   :root { --nav-height: 56px; }
@@ -554,89 +624,72 @@ section { border-bottom: 1px solid var(--rule); }
   .hero-index .hero-content { padding: 60px 20px; }
   .hero-scroll-hint { display: none; }
 
+  /* Manifesto 2-col → single col */
+  .manifesto-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+
   .code-grid { grid-template-columns: 1fr; }
   .tenet-grid { grid-template-columns: 1fr; gap: 12px; }
   .tools-grid { grid-template-columns: 1fr; }
   .article-grid { grid-template-columns: 1fr; }
   .check-in-grid { grid-template-columns: repeat(2, 1fr); }
   .persona-grid { grid-template-columns: 1fr; }
-  .stat-row { flex-direction: column; }
 
+  /* Community 2-col → single col */
+  .community-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+
+  /* Email form stacks */
   .email-inner { padding: 64px 20px; }
-  /* FIX: email form stacks cleanly on mobile */
   .email-form { flex-direction: column; gap: 0; }
-  .email-form input[type="email"] {
-    border-right: 1px solid var(--rule-light);
-    border-bottom: none;
-  }
+  .email-form input[type="email"] { border-right: 1px solid var(--rule-light); border-bottom: none; }
   .email-form button { width: 100%; justify-content: center; }
 
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   .footer-bottom { flex-direction: column; gap: 16px; }
   .footer-brand p { max-width: 100%; }
 
-  /* FIX: hide image panels on mobile that create the black column bug */
+  /* 4AM hero side image hidden */
   .fam-hero-img { display: none; }
-  .gym-photo-panel { display: none; }
 
+  /* ============================================
+     V1.2: GYM SECTION MOBILE FIX
+     On mobile the desktop side panel is hidden.
+     Instead, .gym-bg-mobile appears as a faded
+     background image behind the text content.
+     The section gets position:relative so the
+     absolute bg sits behind the z-index:1 content.
+     ============================================ */
+  .gym-photo-panel { display: none; }
+  .gym-bg-mobile { display: block; } /* show faded bg */
+  .gym-section { position: relative; }
+  .gym-section .container { position: relative; z-index: 1; }
+  /* Ensure text content has readable contrast over bg */
+  .gym-section .body-text { color: var(--silver); }
+
+  /* Steps */
   .step-item { grid-template-columns: 1fr; gap: 8px; }
   .step-num { font-size: 1.8rem; }
 
-  /* ============================================
-     FIX #1 — QUIZ MOBILE LAYOUT
-     The quiz was in a 2-col grid on desktop.
-     On mobile that left-column metadata squeezed
-     the quiz form into a narrow column.
-     Fix: collapse to single column, full width.
-     ============================================ */
-
-  /* Quiz page: the 2-col grid for intro + form */
-  .quiz-layout-grid {
-    display: block !important;
-  }
-  .quiz-layout-grid > *:first-child {
-    margin-bottom: 40px;
-  }
-
-  /* Quiz questions fill full width */
+  /* ---- QUIZ MOBILE ---- */
+  .quiz-layout-grid { display: block !important; }
+  .quiz-layout-grid > *:first-child { margin-bottom: 40px; }
   .quiz-question { padding: 20px 16px 18px; }
   .quiz-q-text { font-size: 0.96rem; }
-
-  /* Quiz options — comfortable stacking */
-  .quiz-option { padding: 12px 14px; gap: 12px; }
-  .quiz-option label { font-size: 0.87rem; }
-
-  /* Quiz submit button — full width */
-  #quiz-form button[type="submit"] {
-    width: 100%;
-    justify-content: center;
-  }
-
-  /* FIX: result card — full width, proper padding */
-  .quiz-result-card {
-    padding: 24px 18px;
-    margin-top: 24px;
-  }
-  .quiz-result-card .display-md {
-    font-size: clamp(1.8rem, 7vw, 2.8rem);
-  }
-  .quiz-result-card > div[style*="flex"] {
-    flex-direction: column !important;
-    gap: 10px !important;
-  }
-  .quiz-result-card .btn {
-    width: 100%;
-    justify-content: center;
-  }
+  .quiz-option { padding: 10px 12px; gap: 10px; }
+  .quiz-option label { font-size: 0.85rem; }
+  .quiz-nav-next { padding: 12px 20px; }
+  .quiz-result-card { padding: 24px 18px; }
+  .quiz-result-row { grid-template-columns: 100px 1fr; }
+  .quiz-result-actions { flex-direction: column; }
+  .quiz-result-actions .btn { width: 100%; justify-content: center; }
+  .quiz-progress-label span:first-child { display: none; }
 }
 
 @media (max-width: 480px) {
   .hero-index .hero-content .display-xl { font-size: clamp(2.8rem, 14vw, 4rem); }
   .bridge-bg-num { display: none; }
   .category-tabs { gap: 6px; }
-  .check-in-grid { grid-template-columns: repeat(2, 1fr); }
-
-  /* FIX: quiz even tighter screens */
-  .quiz-question { padding: 16px 14px 14px; }
+  .quiz-question { padding: 16px 12px 14px; }
   .quiz-q-text { font-size: 0.9rem; }
+  .quiz-result-row { grid-template-columns: 1fr; gap: 2px; }
+  .quiz-result-row-label { font-size: 0.64rem; }
 }

@@ -3,30 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Growth — Writing for People Who Are Doing the Work | The Awake Club</title>
-  <meta name="description" content="Practical writing on discipline, fitness, morning routines, and daily habits from The Awake Club. No fluff. No guaranteed transformations. Honest content for people who actually do the work.">
+  <title>Daily Growth — Practical Writing on Discipline, Fitness & Morning Routines | The Awake Club</title>
+  <meta name="description" content="Writing on daily discipline, fitness consistency, morning routines, gym focus, and building real habits. No fluff. No overnight transformations. Honest content for people doing the work.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://theawakeclub.com/daily-growth.html">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://theawakeclub.com/daily-growth.html">
   <meta property="og:title" content="Daily Growth — The Awake Club">
-  <meta property="og:description" content="Practical writing on discipline, fitness, focus, and daily habits. No listicles. No overnight transformations. Just honest writing for people in it.">
+  <meta property="og:description" content="Practical writing on discipline, fitness, focus, and daily habits. No listicles. No overnight transformations. Honest writing for people in it.">
   <meta property="og:image" content="https://theawakeclub.com/assets/images/gym-cyberpunk.jpg">
   <link rel="stylesheet" href="style.css">
-  <style>
-    /*
-      FIX #3 — Article cards no longer have fake clickable behavior.
-      They show "Coming Soon" labels and don't highlight on hover.
-      The CSS .article-card already sets cursor:default and removes hover.
-      This block reinforces it and ensures no lingering pointer behavior.
-    */
-    .article-card {
-      cursor: default !important;
-      pointer-events: none; /* disable hover state entirely for V1 */
-    }
-    /* Re-enable pointer events only on the category filter tabs */
-    .category-tab { pointer-events: auto; cursor: pointer; }
-  </style>
 </head>
 <body>
 
@@ -71,18 +57,21 @@
   </div>
 </section>
 
-<!-- ARTICLES + CATEGORY FILTER -->
+<!-- ============================================================
+     ARTICLES + CATEGORY FILTER
+     V1.2: Cards show "Writing in Progress" state — intentional,
+     not broken. CTA label is a dot + "Writing in Progress" or
+     "Coming soon — join the list for early access."
+     Category filter still works.
+     ============================================================ -->
 <section class="section-pad" aria-labelledby="articles-hed">
   <div class="container">
 
-    <div data-reveal>
-      <h2 class="display-sm" id="articles-hed" style="margin-bottom:28px;">All Articles</h2>
-
-      <!--
-        FIX #3: Category tabs still work (pointer-events: auto in style above).
-        Article cards are display-only (pointer-events: none) since no article
-        pages exist yet in V1. CTA label changed to "Coming Soon" in the cards below.
-      -->
+    <div data-reveal style="margin-bottom:32px;">
+      <h2 class="display-sm" id="articles-hed" style="margin-bottom:20px;">All Articles</h2>
+      <p class="body-text" style="max-width:560px;margin-bottom:28px;">
+        Articles are being written. <a href="#subscribe" style="color:var(--orange);">Join the list</a> to get them when they go live — no spam, just new writing.
+      </p>
       <div class="category-tabs" role="tablist" aria-label="Filter articles by category">
         <button class="category-tab active" data-filter="all" role="tab" aria-selected="true">All</button>
         <button class="category-tab" data-filter="discipline" role="tab" aria-selected="false">Daily Discipline</button>
@@ -93,92 +82,89 @@
       </div>
     </div>
 
-    <!--
-      Articles: pointer-events:none via CSS. No <a> wrapper since there's
-      nothing to navigate to yet. Changed "Read →" to "Coming Soon" per QA brief option B.
-    -->
     <div class="article-grid" data-reveal data-delay="1" role="list" aria-label="Articles" id="articles-list">
 
       <article class="article-card" data-cat="discipline" role="listitem">
         <span class="article-cat">Daily Discipline</span>
         <h2 class="article-title">Why You Keep Starting Over</h2>
-        <p class="article-summary">You're not starting over because you're undisciplined. You're starting over because you've been measuring consistency the wrong way. This piece reframes the streak mentality and introduces the "never zero" principle as a more durable alternative.</p>
-        <span class="article-cta">Coming Soon</span>
+        <p class="article-summary">You're not starting over because you're undisciplined. You're measuring consistency the wrong way. This reframes the streak mentality and introduces the "never zero" principle as a more durable alternative.</p>
+        <span class="article-wip">Writing in Progress</span>
       </article>
 
       <article class="article-card" data-cat="mornings" role="listitem">
         <span class="article-cat">Mornings &amp; Focus</span>
         <h2 class="article-title">The Myth of the Perfect Morning Routine</h2>
-        <p class="article-summary">The morning routines that go viral are designed to impress, not to function in a real life with obligations. This deconstructs the most common advice and replaces it with a framework that can survive a bad week.</p>
-        <span class="article-cta">Coming Soon</span>
+        <p class="article-summary">The morning routines that go viral are designed to impress, not to function in a real life with obligations. This deconstructs the most common advice and replaces it with something that can survive a bad week.</p>
+        <span class="article-wip">Writing in Progress</span>
       </article>
 
       <article class="article-card" data-cat="fitness" role="listitem">
         <span class="article-cat">Fitness Without the Theater</span>
         <h2 class="article-title">Dress Up. Show Up.</h2>
         <p class="article-summary">The research on behavioral activation, applied to fitness: getting into your gym clothes isn't vanity. It's a signal. This explains why the ritual matters, and how to use it to close the "don't feel like it" gap.</p>
-        <span class="article-cta">Coming Soon</span>
+        <span class="article-wip">Writing in Progress</span>
       </article>
 
       <article class="article-card" data-cat="gym" role="listitem">
         <span class="article-cat">Gym Philosophy</span>
         <h2 class="article-title">Put Your Mind Where Your Weight Is</h2>
         <p class="article-summary">Distracted training doesn't just waste time — it increases injury risk and decreases effectiveness. This introduces the single mental cue that can change a workout from an obligation into a practice.</p>
-        <span class="article-cta">Coming Soon</span>
+        <span class="article-wip">Writing in Progress</span>
       </article>
 
       <article class="article-card" data-cat="gym" role="listitem">
         <span class="article-cat">Gym Philosophy</span>
         <h2 class="article-title">The Phone in the Gym Is Costing You More Than Time</h2>
         <p class="article-summary">A breakdown of what actually happens cognitively when you mix social media with physical training — and a practical protocol for separating the two without giving up music or timing tools.</p>
-        <span class="article-cta">Coming Soon</span>
+        <span class="article-wip">Writing in Progress</span>
       </article>
 
       <article class="article-card" data-cat="discipline" role="listitem">
         <span class="article-cat">Daily Discipline</span>
         <h2 class="article-title">What Every Day Forward Means When the Day Was a Loss</h2>
         <p class="article-summary">Some days are genuinely hard. You fall behind, you don't show up, you react instead of choose. This piece is for those days — and makes the case that "every day forward" includes the recovery from bad ones.</p>
-        <span class="article-cta">Coming Soon</span>
+        <span class="article-wip">Writing in Progress</span>
       </article>
 
       <article class="article-card" data-cat="fitness" role="listitem">
         <span class="article-cat">Fitness Without the Theater</span>
         <h2 class="article-title">The Three-Exercise Rule</h2>
         <p class="article-summary">When time is short, willpower is low, or life has been relentless — you don't need a full program. You need three exercises, executed with intention. This lays out the logic and gives a starting template.</p>
-        <span class="article-cta">Coming Soon</span>
+        <span class="article-wip">Writing in Progress</span>
       </article>
 
       <article class="article-card" data-cat="mornings" role="listitem">
         <span class="article-cat">Mornings &amp; Focus</span>
         <h2 class="article-title">Night Shift, New Parents, and the Myth That 4AM Is for Everyone</h2>
-        <p class="article-summary">An honest look at how "wake up before the world" advice lands for people who are already exhausted by structure they didn't choose. Reframes the 4AM concept for non-traditional schedules.</p>
-        <span class="article-cta">Coming Soon</span>
+        <p class="article-summary">An honest look at how "wake up before the world" advice lands for people who are already exhausted by structure they didn't choose. Reframes the 4AM concept for non-standard schedules.</p>
+        <span class="article-wip">Writing in Progress</span>
       </article>
 
       <article class="article-card" data-cat="discipline" role="listitem">
         <span class="article-cat">Daily Discipline</span>
         <h2 class="article-title">How to Build the Reflect Habit Without Journaling for 45 Minutes</h2>
-        <p class="article-summary">Most people skip reflection because they associate it with long journaling sessions. This introduces a 3-question, 5-minute practice — and explains why it compounds faster than most habits do.</p>
-        <span class="article-cta">Coming Soon</span>
+        <p class="article-summary">Most people skip reflection because they associate it with long journaling sessions. This introduces a 3-question, 5-minute practice that compounds faster than most habits do.</p>
+        <span class="article-wip">Writing in Progress</span>
       </article>
 
       <article class="article-card" data-cat="stories" role="listitem">
         <span class="article-cat">Reader Stories</span>
         <h2 class="article-title">Be Awake in Your Life — What That Actually Looks Like</h2>
         <p class="article-summary">What does it mean to be awake in your life? Not metaphorically — practically. Three reader stories about what shifted when they started claiming their time instead of reacting to it.</p>
-        <span class="article-cta">Coming Soon</span>
+        <span class="article-wip">Writing in Progress</span>
       </article>
 
     </div>
 
-    <div style="margin-top:48px;border-top:1px solid var(--rule);padding-top:32px;text-align:center;" data-reveal>
-      <p style="font-size:.82rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">
-        Articles publish regularly.
+    <!-- V1.2: CTA under article grid -->
+    <div style="margin-top:48px;border-top:1px solid var(--rule);padding-top:36px;text-align:center;" data-reveal>
+      <p style="font-family:var(--font-display);font-weight:700;font-size:1.1rem;text-transform:uppercase;letter-spacing:.06em;color:var(--white);margin-bottom:8px;">
+        Articles are coming.
       </p>
-      <p style="font-size:.82rem;color:var(--muted);margin-bottom:20px;">
-        Subscribe below to get new articles in your inbox as they go live.
+      <p class="body-text" style="margin-bottom:24px;font-size:.9rem;">
+        Get the first articles when they go live. Drop your email below.
       </p>
-      <a href="#subscribe" class="btn btn-primary btn-arrow">Get New Articles in Your Inbox</a>
+      <a href="#subscribe" class="btn btn-primary btn-arrow">Join the Early List</a>
     </div>
 
   </div>
@@ -198,7 +184,7 @@
           Most fitness content is about programs, nutrition, and results. We write about what happens <em>between your ears</em> when you're standing in the gym.
         </p>
         <p class="body-text" style="margin-bottom:28px;">
-          The training is the easy part. Showing up consistently, staying present in every set, and not letting the phone pull your focus — that's where discipline actually lives.
+          Showing up consistently, staying present in every set, not letting the phone pull your focus — that's where discipline actually lives.
         </p>
         <a href="tools.html#cld-section" class="btn btn-outline-orange">Read the Gym Protocol →</a>
       </div>
@@ -223,18 +209,23 @@
 <!-- EMAIL CAPTURE -->
 <section class="email-section section-pad" id="subscribe" aria-labelledby="dg-email-hed">
   <div class="email-inner">
-    <p class="section-label" style="justify-content:center;" data-reveal>Stay Current</p>
+    <p class="section-label" style="justify-content:center;" data-reveal>Get the First Articles</p>
     <h2 class="display-md" id="dg-email-hed" data-reveal data-delay="1" style="margin-bottom:16px;">
-      New Articles.<br>No Spam.
+      Writing in Progress.<br>You're First in Line.
     </h2>
     <p class="lead" data-reveal data-delay="2" style="margin-bottom:8px;">
-      Drop your email. You'll get new Daily Growth articles plus the free 7-Day Starter Plan.
+      Drop your email. You'll get new Daily Growth articles plus the free 7-Day Starter Plan. Nothing else.
     </p>
     <div data-reveal data-delay="3">
-      <!-- TODO: Connect to Mailchimp / Buttondown / ConvertKit — tag subscriber as "daily-growth" -->
-      <form class="email-form" action="#" method="post" aria-label="Subscribe to Daily Growth">
+      <!--
+        EMAIL FORM: daily-growth subscriber
+        TODO: Connect to email provider — tag as "daily-growth".
+      -->
+      <form class="email-form" action="#" method="post"
+            data-form-id="daily-growth"
+            aria-label="Subscribe to Daily Growth">
         <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">
-        <button type="submit">Subscribe →</button>
+        <button type="submit">Get Early Access →</button>
       </form>
       <p class="email-fine">No spam. No fluff. Unsubscribe anytime.</p>
     </div>
@@ -271,11 +262,11 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Tools</h4>
+        <h4>Free Tools</h4>
         <ul>
-          <li><a href="find-your-4am.html">4AM Quiz</a></li>
-          <li><a href="tools.html">7-Day Plan</a></li>
-          <li><a href="tools.html">Gym Focus Timer</a></li>
+          <li><a href="find-your-4am.html#quiz">4AM Quiz</a></li>
+          <li><a href="tools.html#starter-plan">7-Day Plan</a></li>
+          <li><a href="tools.html#gym-timer">Gym Focus Timer</a></li>
           <li><a href="tools.html">All Tools</a></li>
         </ul>
       </div>

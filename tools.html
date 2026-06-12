@@ -13,6 +13,7 @@
   <meta property="og:description" content="No paywalls. No gimmicks. Just practical free tools for people who want to move forward without overcomplicating it.">
   <meta property="og:image" content="https://theawakeclub.com/assets/images/gym-cyberpunk.jpg">
   <link rel="stylesheet" href="style.css">
+  <!-- tools.html v1.2 -->
 </head>
 <body>
 
@@ -132,8 +133,11 @@
       Seven days. One simple habit set. No equipment required for the first three days. Drop your email and it's yours.
     </p>
     <div data-reveal data-delay="3">
-      <!-- TODO: Connect to Mailchimp / Buttondown / ConvertKit — tag subscriber as "starter-plan" -->
-      <form class="email-form" action="#" method="post" aria-label="Download starter plan">
+      
+      <form class="email-form" action="#" method="post"
+            data-form-id="starter-plan"
+            aria-label="Get the free 7-Day Starter Plan">
+        <!-- TODO: Connect to email provider — tag as "starter-plan" -->
         <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">
         <button type="submit">Send It →</button>
       </form>

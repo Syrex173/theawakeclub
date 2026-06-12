@@ -1,15 +1,30 @@
 /* ============================================
-   THE AWAKE CLUB — script.js  v1.1
-   QA fixes: checklist full-row click,
-   nav toggle, quiz scoring, blog filter
+   THE AWAKE CLUB — script.js  v1.2
+   Changes:
+   - Quiz: 5-option scoring, progress bar,
+     question-by-question UX, richer results
+   - Email: consistent handler with form IDs
+   - Nav: same as v1.1
+   - Blog filter, checklist, timer: same as v1.1
    ============================================ */
 
 (function () {
   'use strict';
 
-  /* ---- MOBILE NAV TOGGLE ---- */
-  var toggle = document.querySelector('.nav-toggle');
+  /* ============================================================
+     MOBILE NAV
+     ============================================================ */
+  var toggle    = document.querySelector('.nav-toggle');
   var mobileNav = document.querySelector('.nav-mobile');
+
+  function closeNav() {
+    if (!mobileNav) return;
+    mobileNav.classList.remove('open');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    var spans = toggle ? toggle.querySelectorAll('span') : [];
+    if (spans[0]) { spans[0].style.transform = ''; spans[1].style.opacity = ''; spans[2].style.transform = ''; }
+  }
 
   if (toggle && mobileNav) {
     toggle.addEventListener('click', function () {
@@ -20,48 +35,22 @@
         spans[0].style.transform = 'rotate(45deg) translate(4.5px, 4.5px)';
         spans[1].style.opacity = '0';
         spans[2].style.transform = 'rotate(-45deg) translate(4.5px, -4.5px)';
-        /* FIX: prevent body scroll while mobile nav is open */
         document.body.style.overflow = 'hidden';
       } else {
-        spans[0].style.transform = '';
-        spans[1].style.opacity = '';
-        spans[2].style.transform = '';
-        document.body.style.overflow = '';
+        closeNav();
       }
     });
-
-    /* Close nav and restore scroll when a link is tapped */
-    mobileNav.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        mobileNav.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-        var spans = toggle.querySelectorAll('span');
-        spans[0].style.transform = '';
-        spans[1].style.opacity = '';
-        spans[2].style.transform = '';
-      });
-    });
-
-    /* FIX: close on outside tap (tap overlay behind nav on mobile) */
+    mobileNav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeNav); });
     document.addEventListener('click', function (e) {
-      if (
-        mobileNav.classList.contains('open') &&
-        !mobileNav.contains(e.target) &&
-        !toggle.contains(e.target)
-      ) {
-        mobileNav.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-        var spans = toggle.querySelectorAll('span');
-        spans[0].style.transform = '';
-        spans[1].style.opacity = '';
-        spans[2].style.transform = '';
+      if (mobileNav.classList.contains('open') && !mobileNav.contains(e.target) && !toggle.contains(e.target)) {
+        closeNav();
       }
     });
   }
 
-  /* ---- ACTIVE NAV LINK ---- */
+  /* ============================================================
+     ACTIVE NAV LINK
+     ============================================================ */
   (function () {
     var path = window.location.pathname.replace(/\/$/, '');
     var filename = path.split('/').pop() || 'index.html';
@@ -75,158 +64,297 @@
     });
   })();
 
-  /* ---- SCROLL: NAV BACKGROUND ---- */
+  /* ============================================================
+     SCROLL: NAV BACKGROUND
+     ============================================================ */
   var nav = document.querySelector('.site-nav');
   if (nav) {
     window.addEventListener('scroll', function () {
-      nav.style.background = window.scrollY > 60
-        ? 'rgba(12,12,12,0.98)'
-        : 'rgba(12,12,12,0.93)';
+      nav.style.background = window.scrollY > 60 ? 'rgba(12,12,12,0.98)' : 'rgba(12,12,12,0.93)';
     }, { passive: true });
   }
 
-  /* ---- SCROLL REVEAL ---- */
+  /* ============================================================
+     SCROLL REVEAL
+     ============================================================ */
   if ('IntersectionObserver' in window) {
     var revealEls = document.querySelectorAll('[data-reveal]');
     if (revealEls.length) {
-      var revealStyle = document.createElement('style');
-      revealStyle.textContent =
+      var rs = document.createElement('style');
+      rs.textContent =
         '[data-reveal]{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}' +
         '[data-reveal].revealed{opacity:1;transform:translateY(0)}' +
         '[data-reveal][data-delay="1"]{transition-delay:.1s}' +
         '[data-reveal][data-delay="2"]{transition-delay:.2s}' +
         '[data-reveal][data-delay="3"]{transition-delay:.32s}' +
         '[data-reveal][data-delay="4"]{transition-delay:.44s}';
-      document.head.appendChild(revealStyle);
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            observer.unobserve(entry.target);
-          }
-        });
+      document.head.appendChild(rs);
+      var revealObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('revealed'); revealObs.unobserve(e.target); } });
       }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-      revealEls.forEach(function (el) { observer.observe(el); });
+      revealEls.forEach(function (el) { revealObs.observe(el); });
     }
   }
 
-  /* ---- EMAIL FORMS
-     TODO: Replace the commented block below with your
-     email provider endpoint (Mailchimp, Buttondown, ConvertKit)
-     ---- */
+  /* ============================================================
+     EMAIL FORMS
+     ------------------------------------------------------------
+     All forms share .email-form class and a data-form-id attr.
+     data-form-id values:
+       "starter-plan"  — 7-Day Plan capture (index, tools, start-here)
+       "join-list"     — Community/join list
+       "quiz-result"   — After quiz result
+       "daily-growth"  — Blog subscriber
+
+     TODO: When you choose a provider, replace the integration
+     block below with the real fetch/POST call. Each form's
+     data-form-id can be used to tag subscribers in your provider.
+
+     Example (Buttondown):
+       fetch('https://buttondown.email/api/emails/embed-subscribe/YOUR_USERNAME', {
+         method: 'POST', body: new FormData(form)
+       });
+
+     Example (ConvertKit):
+       fetch('https://api.convertkit.com/v3/forms/FORM_ID/subscribe', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({ api_key: 'YOUR_KEY', email: emailVal, tags: [formId] })
+       });
+     ============================================================ */
   document.querySelectorAll('.email-form').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var input = form.querySelector('input[type="email"]');
-      var btn = form.querySelector('button');
+      var input  = form.querySelector('input[type="email"]');
+      var btn    = form.querySelector('button[type="submit"]');
+      var formId = form.dataset.formId || 'general';
       if (!input || !input.value.trim()) return;
 
-      /* --- EMAIL PROVIDER INTEGRATION POINT ---
+      /* ---- EMAIL PROVIDER INTEGRATION POINT ----
       fetch('https://YOUR_PROVIDER_ENDPOINT', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: input.value })
-      });
-      --- END INTEGRATION POINT --- */
+        body: JSON.stringify({ email: input.value.trim(), form: formId })
+      })
+      .then(function() { showSuccess(); })
+      .catch(function() { btn.textContent = 'Try Again'; });
+      ---- END INTEGRATION POINT ---- */
 
-      btn.textContent = 'Sent ✓';
-      btn.style.background = '#2a8a4a';
-      btn.style.color = '#fff';
-      input.value = '';
-      input.disabled = true;
-      btn.disabled = true;
+      // Temporary success state until provider is connected
+      showSuccess();
+
+      function showSuccess() {
+        btn.textContent = 'You\'re on the list ✓';
+        btn.classList.add('sent');
+        btn.disabled = true;
+        input.value = '';
+        input.disabled = true;
+      }
     });
   });
 
-  /* ---- QUIZ (Find Your 4AM) ---- */
-  var quizForm = document.getElementById('quiz-form');
-  var quizResult = document.getElementById('quiz-result');
+  /* ============================================================
+     QUIZ — V1.2
+     ------------------------------------------------------------
+     5 options per question: A(4) B(3) C(2) D(1) E(0/special)
+     E is the "night shift / non-traditional schedule" option.
+
+     Scoring:
+       A = 4 pts (very locked in)
+       B = 3 pts (mostly good, inconsistent)
+       C = 2 pts (trying but scattered)
+       D = 1 pt  (struggling/reactive)
+       E = 0 pts + eCount++ (non-traditional schedule flag)
+
+     Result thresholds (8 questions, max 32 pts):
+       Early Claimer  : score >= 26
+       Builder        : score >= 18
+       Reclaimer      : score >= 9
+       Night Claimer  : eCount >= 4 (regardless of score)
+       Struggling     : score < 9 (less than Reclaimer)
+         → same as Reclaimer with different messaging
+     ============================================================ */
+  var quizForm    = document.getElementById('quiz-form');
+  var quizResult  = document.getElementById('quiz-result');
+  var progressFill = document.getElementById('quiz-progress-fill');
+  var progressText = document.getElementById('quiz-progress-text');
 
   if (quizForm && quizResult) {
+    var questions   = Array.from(quizForm.querySelectorAll('.quiz-question'));
+    var totalQ      = questions.length;
+    var currentQ    = 0;
+    var answers     = {}; // { q1: 'A', q2: 'C', ... }
+
+    // Show only first question
+    function showQuestion(idx) {
+      questions.forEach(function (q, i) { q.classList.toggle('active', i === idx); });
+      updateProgress(idx);
+
+      // Scroll to quiz top on mobile when navigating
+      if (window.innerWidth <= 768) {
+        var quizSection = document.getElementById('quiz');
+        if (quizSection) quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function updateProgress(idx) {
+      var pct = Math.round((idx / totalQ) * 100);
+      if (progressFill) progressFill.style.width = pct + '%';
+      if (progressText) progressText.textContent = (idx + 1) + ' of ' + totalQ;
+
+      // Update nav button states
+      var backBtn = document.getElementById('quiz-back');
+      var nextBtn = document.getElementById('quiz-next');
+      var submitBtn = document.getElementById('quiz-submit');
+
+      if (backBtn) backBtn.style.display = idx === 0 ? 'none' : '';
+      if (nextBtn) nextBtn.style.display = idx === totalQ - 1 ? 'none' : '';
+      if (submitBtn) submitBtn.style.display = idx === totalQ - 1 ? '' : 'none';
+    }
+
+    // Highlight selected option visually
+    questions.forEach(function (q) {
+      var opts = q.querySelectorAll('.quiz-option');
+      var name = q.dataset.name;
+      opts.forEach(function (opt) {
+        opt.addEventListener('click', function () {
+          opts.forEach(function (o) { o.classList.remove('selected'); });
+          opt.classList.add('selected');
+          var radio = opt.querySelector('input[type="radio"]');
+          if (radio) radio.checked = true;
+          if (name) answers[name] = radio ? radio.value : '';
+        });
+      });
+    });
+
+    // Next button
+    document.addEventListener('click', function (e) {
+      if (e.target && e.target.id === 'quiz-next') {
+        var current = questions[currentQ];
+        var radios  = current.querySelectorAll('input[type="radio"]');
+        var answered = Array.from(radios).some(function (r) { return r.checked; });
+        if (!answered) {
+          current.style.borderColor = 'var(--orange)';
+          setTimeout(function () { current.style.borderColor = ''; }, 1200);
+          return;
+        }
+        currentQ++;
+        showQuestion(currentQ);
+      }
+      if (e.target && e.target.id === 'quiz-back') {
+        if (currentQ > 0) { currentQ--; showQuestion(currentQ); }
+      }
+    });
+
+    // Submit
     quizForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      var data = new FormData(quizForm);
-      var score = 0;
-      var dCount = 0;
-      var totalAnswered = 0;
+      // Collect all answers
+      var data   = new FormData(quizForm);
+      var score  = 0;
+      var eCount = 0;
 
       for (var pair of data.entries()) {
-        totalAnswered++;
-        if (pair[1] === 'A') score += 3;
-        else if (pair[1] === 'B') score += 2;
-        else if (pair[1] === 'C') score += 1;
-        else if (pair[1] === 'D') dCount++;
+        var val = pair[1];
+        if      (val === 'A') score += 4;
+        else if (val === 'B') score += 3;
+        else if (val === 'C') score += 2;
+        else if (val === 'D') score += 1;
+        else if (val === 'E') eCount++;
       }
 
+      // Determine result
       var result;
-      if (dCount >= 4) {
+
+      if (eCount >= 4) {
         result = {
-          type: 'The Night Claimer',
-          tagline: 'Your rhythm doesn\'t follow the sun — and it doesn\'t have to.',
-          body: 'Your 4AM might be 10PM, midnight, or a window in the afternoon. The Awake Club framework works on any clock. What matters is that you name your window and protect it.',
-          challenge: 'Building structure that doesn\'t assume a standard schedule.',
-          start: 'The Awake Code'
+          type:      'The Night Claimer',
+          identity:  'Your schedule runs opposite to the standard world — and that doesn\'t make you behind.',
+          window:    'Your 4AM might be 10PM, noon, or a 20-minute window between a night shift and sleep. The clock doesn\'t matter. The claiming does.',
+          challenge: 'Building consistent structure without assuming a standard wake/sleep cycle.',
+          action:    'Name your window — whatever time it is. Write it down. That\'s your 4AM.',
+          link:      'start-here.html',
+          linkText:  'Read The Awake Code'
         };
-      } else if (score >= 19) {
+      } else if (score >= 26) {
         result = {
-          type: 'The Early Claimer',
-          tagline: 'You already have the instinct. Now build the system around it.',
-          body: 'You know what it feels like to own the morning — or you\'re close. Your next move isn\'t finding your 4AM, it\'s protecting what you\'ve already built. The Awake Code turns instinct into a repeatable system.',
-          challenge: 'Protecting your window from slow creep.',
-          start: 'The Awake Code'
+          type:      'The Early Claimer',
+          identity:  'You already have the instinct. The window exists — you just need to protect it.',
+          window:    'You\'re likely up before most. The morning feels like yours. The risk is slow drift — the small habits that start eating the edges.',
+          challenge: 'Protecting your window from creep: the phone that comes out a little earlier each week, the late nights that shorten it.',
+          action:    'Define what your Claim block is for — and write what is off-limits during it.',
+          link:      'tools.html',
+          linkText:  'Explore Tools'
         };
-      } else if (score >= 13) {
+      } else if (score >= 18) {
         result = {
-          type: 'The Builder',
-          tagline: 'You know what you want. The gap is structure, not motivation.',
-          body: 'You\'ve seen what a good morning can do. The problem isn\'t willpower — it\'s that you don\'t have a framework that holds when life gets complicated. The 7-Day Plan gives you that structure.',
-          challenge: 'Bridging the gap between "I\'ll start tomorrow" and today.',
-          start: '7-Day Starter Plan'
+          type:      'The Builder',
+          identity:  'You know what you want. The gap between intention and consistency is structure, not willpower.',
+          window:    'You\'ve had good mornings. You know what they feel like. You just haven\'t made them repeatable yet.',
+          challenge: 'Bridging the gap between "I\'ll start properly tomorrow" and doing something imperfect today.',
+          action:    'Start the 7-Day Plan. It\'s built for the exact gap you\'re in.',
+          link:      'tools.html',
+          linkText:  'Get the 7-Day Plan'
         };
       } else {
         result = {
-          type: 'The Reclaimer',
-          tagline: 'Life has a real claim on your time right now. Let\'s find your window anyway.',
-          body: 'You\'re not behind. You\'re working with harder constraints. Your 4AM isn\'t about optimization — it\'s about finding any 15–20 minutes that belong to you and protecting them.',
-          challenge: 'Lowering the bar enough to actually start.',
-          start: '7-Day Starter Plan (Days 1–3 require no equipment)'
+          type:      'The Reclaimer',
+          identity:  'Life has a real claim on your time right now. You\'re not behind — you\'re working with harder constraints.',
+          window:    'Your 4AM isn\'t about optimization. It\'s about finding any 15–20 minutes that belong to you before the world takes over. That window exists. It just needs to be found.',
+          challenge: 'Lowering the bar enough to actually start. Not a perfect routine — any routine.',
+          action:    'Try Days 1–3 of the Starter Plan. No equipment required. Under 20 minutes each day.',
+          link:      'tools.html',
+          linkText:  'Get the 7-Day Plan'
         };
       }
 
+      // Render result
       quizResult.innerHTML =
         '<div class="quiz-result-card">' +
-          '<p class="eyebrow" style="margin-bottom:14px;">Your Result</p>' +
-          '<div class="display-md" style="margin-bottom:12px;">' + result.type + '</div>' +
-          '<p style="font-family:var(--font-display);font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:.04em;color:var(--orange);margin-bottom:20px;line-height:1.3;">' + result.tagline + '</p>' +
-          '<p class="body-text" style="margin-bottom:18px;">' + result.body + '</p>' +
-          '<p style="font-size:.82rem;color:var(--steel);margin-bottom:8px;"><strong style="color:var(--silver);">Your challenge:</strong> ' + result.challenge + '</p>' +
-          '<p style="font-size:.82rem;color:var(--steel);margin-bottom:28px;"><strong style="color:var(--silver);">Start here:</strong> ' + result.start + '</p>' +
-          '<div style="display:flex;gap:12px;flex-wrap:wrap;">' +
-            '<a href="tools.html" class="btn btn-primary btn-arrow">Explore Tools</a>' +
+          '<p class="quiz-result-type">Your Result</p>' +
+          '<h2 class="quiz-result-name">' + result.type + '</h2>' +
+          '<p class="quiz-result-tagline">' + result.identity + '</p>' +
+          '<p class="quiz-result-body">' + result.window + '</p>' +
+          '<div class="quiz-result-meta">' +
+            '<div class="quiz-result-row">' +
+              '<span class="quiz-result-row-label">Your challenge</span>' +
+              '<span class="quiz-result-row-val">' + result.challenge + '</span>' +
+            '</div>' +
+            '<div class="quiz-result-row">' +
+              '<span class="quiz-result-row-label">First action</span>' +
+              '<span class="quiz-result-row-val">' + result.action + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="quiz-result-actions">' +
+            '<a href="' + result.link + '" class="btn btn-primary btn-arrow">' + result.linkText + '</a>' +
             '<a href="start-here.html" class="btn btn-ghost">Start Here</a>' +
           '</div>' +
         '</div>';
 
       quizResult.style.display = 'block';
       quizResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Update progress to 100%
+      if (progressFill) progressFill.style.width = '100%';
+      if (progressText) progressText.textContent = 'Done';
     });
+
+    // Init
+    showQuestion(0);
   }
 
-  /* ---- BLOG CATEGORY FILTER ---- */
-  var catTabs = document.querySelectorAll('.category-tab');
+  /* ============================================================
+     BLOG CATEGORY FILTER
+     ============================================================ */
+  var catTabs    = document.querySelectorAll('.category-tab');
   var articleCards = document.querySelectorAll('.article-card[data-cat]');
 
   if (catTabs.length && articleCards.length) {
     catTabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
-        catTabs.forEach(function (t) {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-
+        catTabs.forEach(function (t) { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+        tab.classList.add('active'); tab.setAttribute('aria-selected', 'true');
         var cat = tab.dataset.filter;
         articleCards.forEach(function (card) {
           card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
@@ -236,39 +364,24 @@
   }
 
   /* ============================================================
-     FIX #2 — CHECKLIST: full-row click including checkbox itself
-     The original toggleCheck(this) on onclick worked for clicks on
-     the label text but the checkbox element itself didn't propagate
-     correctly in all browsers. We now use a proper change listener
-     on the checkbox and pointer events on the row.
+     CHECKLIST (full-row click)
      ============================================================ */
   document.querySelectorAll('.checklist-item').forEach(function (item) {
     var cb = item.querySelector('input[type="checkbox"]');
     if (!cb) return;
-
-    /* Clicking anywhere in the row toggles the checkbox */
     item.addEventListener('click', function (e) {
-      /* If click landed directly on checkbox, let the browser handle it
-         (it already toggled); just sync the visual state */
-      if (e.target !== cb) {
-        cb.checked = !cb.checked;
-      }
-      syncChecklist(item, cb);
+      if (e.target !== cb) cb.checked = !cb.checked;
+      syncCheck(item, cb);
     });
-
-    /* Also listen to keyboard/programmatic changes */
-    cb.addEventListener('change', function () {
-      syncChecklist(item, cb);
-    });
+    cb.addEventListener('change', function () { syncCheck(item, cb); });
   });
 
-  function syncChecklist(item, cb) {
+  function syncCheck(item, cb) {
     item.classList.toggle('checked', cb.checked);
-    /* Check if all items are complete */
     var all = document.querySelectorAll('.checklist-item input[type="checkbox"]');
-    var allChecked = Array.prototype.every.call(all, function (c) { return c.checked; });
+    var allDone = Array.prototype.every.call(all, function (c) { return c.checked; });
     var complete = document.getElementById('checklist-complete');
-    if (complete) complete.style.display = allChecked ? 'block' : 'none';
+    if (complete) complete.style.display = allDone ? 'block' : 'none';
   }
 
-})();
+})(); // end IIFE
