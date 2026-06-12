@@ -375,27 +375,44 @@ article.article-card { cursor: default; }
   line-height: 1.5; flex: 1; display: block;
 }
 
-/* Quiz navigation buttons */
+/* Quiz navigation buttons
+   V1.2.1: Single .quiz-nav bar sits outside question cards.
+   Back = dark outlined, Next/Submit = orange primary.
+*/
 .quiz-nav {
-  display: flex; gap: 10px; margin-top: 20px; align-items: center;
+  display: flex; gap: 12px; margin-top: 24px; align-items: center;
 }
+
+/* Back — dark outlined secondary */
 .quiz-nav-back {
-  background: transparent; color: var(--steel); border: 1px solid var(--rule);
-  font-family: var(--font-display); font-weight: 700; font-size: 0.82rem;
+  background: transparent;
+  color: var(--steel);
+  border: 1px solid var(--rule-light);
+  font-family: var(--font-display); font-weight: 700; font-size: 0.88rem;
   letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 12px 24px; cursor: pointer; transition: all 0.2s;
-  min-height: 44px;
+  padding: 14px 24px; cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  min-height: 48px; white-space: nowrap;
 }
 .quiz-nav-back:hover { border-color: var(--steel); color: var(--white); }
+
+/* Next — orange primary */
 .quiz-nav-next {
   background: var(--orange); color: #000; border: none;
-  font-family: var(--font-display); font-weight: 700; font-size: 0.9rem;
+  font-family: var(--font-display); font-weight: 700; font-size: 0.95rem;
   letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 12px 28px; cursor: pointer; transition: background 0.2s;
-  min-height: 44px; flex: 1;
+  padding: 14px 32px; cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  min-height: 48px; flex: 1;
 }
-.quiz-nav-next:hover { background: #ff7228; }
-.quiz-nav-next:disabled { opacity: 0.4; cursor: default; }
+.quiz-nav-next:hover { background: #ff7228; transform: translateY(-1px); }
+.quiz-nav-next:disabled { opacity: 0.38; cursor: default; transform: none; }
+
+/* Submit (See My Result) — same as Next but slightly distinct label styling */
+.quiz-nav-submit {
+  /* Inherits .quiz-nav-next styles */
+  font-size: 0.95rem;
+}
 
 /* Result card (V1.2: richer structure) */
 .quiz-result-card {
@@ -676,7 +693,10 @@ article.article-card { cursor: default; }
   .quiz-q-text { font-size: 0.96rem; }
   .quiz-option { padding: 10px 12px; gap: 10px; }
   .quiz-option label { font-size: 0.85rem; }
-  .quiz-nav-next { padding: 12px 20px; }
+  /* Nav bar: stack back/next vertically, full width */
+  .quiz-nav { flex-direction: row; flex-wrap: wrap; gap: 10px; }
+  .quiz-nav-back { width: auto; min-width: 80px; flex-shrink: 0; padding: 12px 20px; }
+  .quiz-nav-next { padding: 14px 20px; }
   .quiz-result-card { padding: 24px 18px; }
   .quiz-result-row { grid-template-columns: 100px 1fr; }
   .quiz-result-actions { flex-direction: column; }
@@ -692,4 +712,5 @@ article.article-card { cursor: default; }
   .quiz-q-text { font-size: 0.9rem; }
   .quiz-result-row { grid-template-columns: 1fr; gap: 2px; }
   .quiz-result-row-label { font-size: 0.64rem; }
+  .quiz-nav-back { font-size: 0.8rem; padding: 10px 16px; }
 }

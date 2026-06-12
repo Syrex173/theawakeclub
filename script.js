@@ -154,162 +154,247 @@
   });
 
   /* ============================================================
-     QUIZ — V1.2
+     QUIZ — V1.2.1
      ------------------------------------------------------------
-     5 options per question: A(4) B(3) C(2) D(1) E(0/special)
-     E is the "night shift / non-traditional schedule" option.
+     FIXES:
+     1. 6 result types (was 4)
+     2. Per-answer-type counting (aCount/bCount/cCount/dCount/eCount)
+        drives richer result logic
+     3. Single shared nav bar (no duplicate IDs) — fixes desktop
+        showing all questions and broken button states
+     4. Scroll targets the progress bar / nav bar, not quiz section
+        top — fixes mobile jump-to-intro bug
+     5. Button styling: .quiz-nav-submit class for See My Result
+     ------------------------------------------------------------
+     5 options per question:
+       A = very locked in / already doing well
+       B = mostly good, inconsistent
+       C = trying but scattered / start-stop
+       D = struggling / reactive / phone-pulled
+       E = non-traditional schedule / night shift
 
-     Scoring:
-       A = 4 pts (very locked in)
-       B = 3 pts (mostly good, inconsistent)
-       C = 2 pts (trying but scattered)
-       D = 1 pt  (struggling/reactive)
-       E = 0 pts + eCount++ (non-traditional schedule flag)
+     Scoring weights:
+       A = 4 pts, B = 3 pts, C = 2 pts, D = 1 pt, E = 0 pts
 
-     Result thresholds (8 questions, max 32 pts):
-       Early Claimer  : score >= 26
-       Builder        : score >= 18
-       Reclaimer      : score >= 9
-       Night Claimer  : eCount >= 4 (regardless of score)
-       Struggling     : score < 9 (less than Reclaimer)
-         → same as Reclaimer with different messaging
+     6 Results (8 questions, max 32 pts):
+       Night Claimer       : eCount >= 4
+       Early Claimer       : score >= 26
+       Builder             : score >= 20
+       Drifter             : score < 20 AND dCount >= 3
+                             (phone/reactive pattern dominates)
+       Restarting Beginner : score < 20 AND cCount >= 3
+                             (start-stop pattern dominates)
+       Reclaimer           : everything else below Builder
      ============================================================ */
-  var quizForm    = document.getElementById('quiz-form');
-  var quizResult  = document.getElementById('quiz-result');
+  var quizForm     = document.getElementById('quiz-form');
+  var quizResult   = document.getElementById('quiz-result');
   var progressFill = document.getElementById('quiz-progress-fill');
   var progressText = document.getElementById('quiz-progress-text');
 
   if (quizForm && quizResult) {
-    var questions   = Array.from(quizForm.querySelectorAll('.quiz-question'));
-    var totalQ      = questions.length;
-    var currentQ    = 0;
-    var answers     = {}; // { q1: 'A', q2: 'C', ... }
+    var questions  = Array.from(quizForm.querySelectorAll('.quiz-question'));
+    var totalQ     = questions.length;
+    var currentQ   = 0;
 
-    // Show only first question
+    // Single shared nav elements (no duplicate IDs)
+    var backBtn    = document.getElementById('quiz-back');
+    var nextBtn    = document.getElementById('quiz-next');
+    var submitBtn  = document.getElementById('quiz-submit');
+    var navBar     = document.getElementById('quiz-nav-bar');
+
+    /* ----------------------------------------------------------
+       showQuestion(idx)
+       Show one question at a time on both desktop and mobile.
+       Scroll: targets the progress bar wrapper (sits above the
+       question card) so the user sees the question, not the
+       section intro or page top.
+    ---------------------------------------------------------- */
     function showQuestion(idx) {
-      questions.forEach(function (q, i) { q.classList.toggle('active', i === idx); });
+      // Hide all, show active
+      questions.forEach(function (q, i) {
+        q.classList.toggle('active', i === idx);
+      });
+
       updateProgress(idx);
 
-      // Scroll to quiz top on mobile when navigating
-      if (window.innerWidth <= 768) {
-        var quizSection = document.getElementById('quiz');
-        if (quizSection) quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Scroll to progress bar — works on both desktop and mobile.
+      // Uses the progress wrapper so the nav context is visible.
+      // Small offset so top of question is comfortably below the fixed nav.
+      var progressWrap = document.querySelector('.quiz-progress-wrap');
+      var scrollTarget = progressWrap || navBar;
+      if (scrollTarget) {
+        var navH = parseInt(getComputedStyle(document.documentElement)
+          .getPropertyValue('--nav-height')) || 64;
+        var top = scrollTarget.getBoundingClientRect().top
+                  + window.pageYOffset
+                  - navH - 16;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
       }
     }
 
     function updateProgress(idx) {
       var pct = Math.round((idx / totalQ) * 100);
-      if (progressFill) progressFill.style.width = pct + '%';
+      if (progressFill) {
+        progressFill.style.width = pct + '%';
+        var bar = progressFill.closest('[role=progressbar]');
+        if (bar) bar.setAttribute('aria-valuenow', pct);
+      }
       if (progressText) progressText.textContent = (idx + 1) + ' of ' + totalQ;
 
-      // Update nav button states
-      var backBtn = document.getElementById('quiz-back');
-      var nextBtn = document.getElementById('quiz-next');
-      var submitBtn = document.getElementById('quiz-submit');
-
+      // Show/hide Back
       if (backBtn) backBtn.style.display = idx === 0 ? 'none' : '';
-      if (nextBtn) nextBtn.style.display = idx === totalQ - 1 ? 'none' : '';
-      if (submitBtn) submitBtn.style.display = idx === totalQ - 1 ? '' : 'none';
+      // Show Next or Submit
+      var isLast = idx === totalQ - 1;
+      if (nextBtn)   nextBtn.style.display   = isLast ? 'none' : '';
+      if (submitBtn) submitBtn.style.display = isLast ? ''     : 'none';
     }
 
-    // Highlight selected option visually
+    /* Highlight selected option visually */
     questions.forEach(function (q) {
       var opts = q.querySelectorAll('.quiz-option');
-      var name = q.dataset.name;
       opts.forEach(function (opt) {
         opt.addEventListener('click', function () {
           opts.forEach(function (o) { o.classList.remove('selected'); });
           opt.classList.add('selected');
           var radio = opt.querySelector('input[type="radio"]');
           if (radio) radio.checked = true;
-          if (name) answers[name] = radio ? radio.value : '';
         });
       });
     });
 
-    // Next button
-    document.addEventListener('click', function (e) {
-      if (e.target && e.target.id === 'quiz-next') {
-        var current = questions[currentQ];
-        var radios  = current.querySelectorAll('input[type="radio"]');
-        var answered = Array.from(radios).some(function (r) { return r.checked; });
+    /* Back button */
+    if (backBtn) {
+      backBtn.addEventListener('click', function () {
+        if (currentQ > 0) { currentQ--; showQuestion(currentQ); }
+      });
+    }
+
+    /* Next button */
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        var current  = questions[currentQ];
+        var answered = Array.from(current.querySelectorAll('input[type="radio"]'))
+                           .some(function (r) { return r.checked; });
         if (!answered) {
+          // Shake the active question border to indicate required
           current.style.borderColor = 'var(--orange)';
-          setTimeout(function () { current.style.borderColor = ''; }, 1200);
+          setTimeout(function () { current.style.borderColor = ''; }, 1400);
           return;
         }
         currentQ++;
         showQuestion(currentQ);
-      }
-      if (e.target && e.target.id === 'quiz-back') {
-        if (currentQ > 0) { currentQ--; showQuestion(currentQ); }
-      }
-    });
+      });
+    }
 
-    // Submit
+    /* Submit */
     quizForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      // Collect all answers
+      // Require answer on last question
+      var lastQ    = questions[totalQ - 1];
+      var answered = Array.from(lastQ.querySelectorAll('input[type="radio"]'))
+                         .some(function (r) { return r.checked; });
+      if (!answered) {
+        lastQ.style.borderColor = 'var(--orange)';
+        setTimeout(function () { lastQ.style.borderColor = ''; }, 1400);
+        return;
+      }
+
+      // Tally answers by letter
       var data   = new FormData(quizForm);
       var score  = 0;
-      var eCount = 0;
+      var aCount = 0, bCount = 0, cCount = 0, dCount = 0, eCount = 0;
 
       for (var pair of data.entries()) {
         var val = pair[1];
-        if      (val === 'A') score += 4;
-        else if (val === 'B') score += 3;
-        else if (val === 'C') score += 2;
-        else if (val === 'D') score += 1;
-        else if (val === 'E') eCount++;
+        if      (val === 'A') { score += 4; aCount++; }
+        else if (val === 'B') { score += 3; bCount++; }
+        else if (val === 'C') { score += 2; cCount++; }
+        else if (val === 'D') { score += 1; dCount++; }
+        else if (val === 'E') {             eCount++; }
       }
 
-      // Determine result
+      /* ----------------------------------------------------------
+         RESULT LOGIC — 6 types
+         Priority order matters:
+         1. Night Claimer  — E-dominant (schedule mismatch)
+         2. Early Claimer  — very high score
+         3. Builder        — solid score
+         4. Drifter        — D-dominant (phone/reactive pattern)
+         5. Restarting     — C-dominant (start-stop pattern)
+         6. Reclaimer      — everyone else
+      ---------------------------------------------------------- */
       var result;
 
       if (eCount >= 4) {
+        /* NIGHT CLAIMER */
         result = {
           type:      'The Night Claimer',
           identity:  'Your schedule runs opposite to the standard world — and that doesn\'t make you behind.',
-          window:    'Your 4AM might be 10PM, noon, or a 20-minute window between a night shift and sleep. The clock doesn\'t matter. The claiming does.',
+          window:    'Your 4AM might be 10PM, noon, or a gap between a night shift and sleep. The framework works on any clock. What matters isn\'t the hour — it\'s that you name the window and protect it.',
           challenge: 'Building consistent structure without assuming a standard wake/sleep cycle.',
-          action:    'Name your window — whatever time it is. Write it down. That\'s your 4AM.',
+          action:    'Name your window right now — whatever time it is. Write it down. That\'s your 4AM. Then read The Awake Code.',
           link:      'start-here.html',
           linkText:  'Read The Awake Code'
         };
       } else if (score >= 26) {
+        /* EARLY CLAIMER */
         result = {
           type:      'The Early Claimer',
-          identity:  'You already have the instinct. The window exists — you just need to protect it.',
-          window:    'You\'re likely up before most. The morning feels like yours. The risk is slow drift — the small habits that start eating the edges.',
-          challenge: 'Protecting your window from creep: the phone that comes out a little earlier each week, the late nights that shorten it.',
-          action:    'Define what your Claim block is for — and write what is off-limits during it.',
+          identity:  'You already have the instinct and the window. Your job is protection, not discovery.',
+          window:    'You\'re likely up before most people. The morning feels like yours. The risk is slow creep — the small habits that start eating the edges of what you\'ve built.',
+          challenge: 'Protecting your window from drift: the phone that moves earlier each week, the late nights that shorten it.',
+          action:    'Define exactly what your Claim block is for — and write what is permanently off-limits during it.',
           link:      'tools.html',
-          linkText:  'Explore Tools'
+          linkText:  'Explore Free Tools'
         };
-      } else if (score >= 18) {
+      } else if (score >= 20) {
+        /* BUILDER */
         result = {
           type:      'The Builder',
-          identity:  'You know what you want. The gap between intention and consistency is structure, not willpower.',
-          window:    'You\'ve had good mornings. You know what they feel like. You just haven\'t made them repeatable yet.',
-          challenge: 'Bridging the gap between "I\'ll start properly tomorrow" and doing something imperfect today.',
-          action:    'Start the 7-Day Plan. It\'s built for the exact gap you\'re in.',
+          identity:  'You know what a good morning feels like. The gap between knowing and doing it consistently is structure, not willpower.',
+          window:    'You\'ve had great mornings. You know what they feel like. You just haven\'t made them repeatable under stress yet.',
+          challenge: 'Closing the gap between "I\'ll do it properly starting Monday" and doing something imperfect today.',
+          action:    'Start the 7-Day Plan. It\'s built exactly for the gap you\'re in — a bridge from intention to habit.',
           link:      'tools.html',
           linkText:  'Get the 7-Day Plan'
         };
+      } else if (dCount >= 3) {
+        /* DRIFTER — phone/reactive/distraction-dominant */
+        result = {
+          type:      'The Drifter',
+          identity:  'Your attention is being pulled before you can direct it. This isn\'t a willpower problem — it\'s an environment problem.',
+          window:    'Right now the phone and the reactive loop are winning. Your 4AM exists, but it\'s getting claimed by something else before you can use it.',
+          challenge: 'Breaking the reflex — the automatic reach for the phone, the immediate reaction to every notification.',
+          action:    'Try one thing tomorrow: don\'t touch your phone for the first 15 minutes after waking. That\'s Claim. Start there.',
+          link:      'tools.html#daily-checklist',
+          linkText:  'Use the Daily Checklist'
+        };
+      } else if (cCount >= 3) {
+        /* RESTARTING BEGINNER — start-stop pattern dominant */
+        result = {
+          type:      'The Restarting Beginner',
+          identity:  'You keep starting, which means you haven\'t given up. The problem isn\'t motivation — it\'s that the bar is set too high.',
+          window:    'Every restart is a signal that the habit is trying to form. The problem isn\'t you — it\'s that the structure you\'re trying to build is too ambitious for where you\'re starting.',
+          challenge: 'Lowering the bar far enough that you actually stay consistent, instead of setting a perfect standard that breaks every time.',
+          action:    'Dress Up. Show Up. That\'s the whole plan for now. Get dressed for movement, then go. Nothing else required yet.',
+          link:      'tools.html#starter-plan',
+          linkText:  'Get the 7-Day Plan'
+        };
       } else {
+        /* RECLAIMER — life obligations / time constraints */
         result = {
           type:      'The Reclaimer',
-          identity:  'Life has a real claim on your time right now. You\'re not behind — you\'re working with harder constraints.',
-          window:    'Your 4AM isn\'t about optimization. It\'s about finding any 15–20 minutes that belong to you before the world takes over. That window exists. It just needs to be found.',
-          challenge: 'Lowering the bar enough to actually start. Not a perfect routine — any routine.',
-          action:    'Try Days 1–3 of the Starter Plan. No equipment required. Under 20 minutes each day.',
-          link:      'tools.html',
+          identity:  'Life has a real claim on your time right now. You\'re not behind — you\'re working with harder constraints than most.',
+          window:    'Your 4AM isn\'t about optimization. It\'s about finding any 15–20 minutes that belong to you before the day takes over. That window exists — it just needs to be claimed.',
+          challenge: 'Finding even a small protected window inside a schedule that feels like it belongs to everyone else.',
+          action:    'Try Days 1–3 of the Starter Plan. No equipment. Under 20 minutes each. That\'s the re-entry point.',
+          link:      'tools.html#starter-plan',
           linkText:  'Get the 7-Day Plan'
         };
       }
 
-      // Render result
+      /* Render result card */
       quizResult.innerHTML =
         '<div class="quiz-result-card">' +
           '<p class="quiz-result-type">Your Result</p>' +
@@ -333,14 +418,25 @@
         '</div>';
 
       quizResult.style.display = 'block';
-      quizResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-      // Update progress to 100%
+      // Progress to 100%
       if (progressFill) progressFill.style.width = '100%';
       if (progressText) progressText.textContent = 'Done';
+
+      // Hide the nav bar now that we're done
+      if (navBar) navBar.style.display = 'none';
+
+      // Scroll to result
+      quizResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Show post-result email capture
+      var emailCapture = document.getElementById('quiz-email-capture');
+      if (emailCapture) {
+        emailCapture.style.display = 'block';
+      }
     });
 
-    // Init
+    // Init: show first question, set button states
     showQuestion(0);
   }
 
