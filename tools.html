@@ -134,11 +134,21 @@
     </p>
     <div data-reveal data-delay="3">
       
-      <form class="email-form" action="#" method="post"
+      <!--
+        EMAIL FORM: starter-plan (Tools page)
+        Provider: Buttondown (theawakeclub)
+        Endpoint: https://buttondown.com/api/emails/embed-subscribe/theawakeclub
+        Tag: starter-plan
+      -->
+      <form class="email-form"
+            action="https://buttondown.com/api/emails/embed-subscribe/theawakeclub"
+            method="post"
+            target="_self"
             data-form-id="starter-plan"
             aria-label="Get the free 7-Day Starter Plan">
-        <!-- TODO: Connect to email provider — tag as "starter-plan" -->
         <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">
+        <input type="hidden" name="tag" value="starter-plan">
+        <input type="hidden" name="referrer_url" value="https://theawakeclub.com/tools.html">
         <button type="submit">Send It →</button>
       </form>
       <p class="email-fine">No spam. No fluff. Unsubscribe anytime.</p>

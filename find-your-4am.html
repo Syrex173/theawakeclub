@@ -342,10 +342,21 @@
             EMAIL FORM: quiz-result capture
             TODO: Connect to email provider — tag as "quiz-result".
           -->
-          <form class="email-form" action="#" method="post"
+          <!--
+            EMAIL FORM: quiz-result
+            Provider: Buttondown (theawakeclub)
+            Endpoint: https://buttondown.com/api/emails/embed-subscribe/theawakeclub
+            Tag: quiz-result (via hidden tag field)
+          -->
+          <form class="email-form"
+                action="https://buttondown.com/api/emails/embed-subscribe/theawakeclub"
+                method="post"
+                target="_self"
                 data-form-id="quiz-result"
                 aria-label="Get the starter plan after quiz">
             <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">
+            <input type="hidden" name="tag" value="quiz-result">
+            <input type="hidden" name="referrer_url" value="https://theawakeclub.com/find-your-4am.html">
             <button type="submit">Send It →</button>
           </form>
           <p class="email-fine">No spam. No fluff. Unsubscribe anytime.</p>
@@ -369,10 +380,21 @@
       EMAIL FORM: starter-plan (4AM page)
       TODO: Connect to email provider — tag as "starter-plan".
     -->
-    <form class="email-form" action="#" method="post"
+    <!--
+      EMAIL FORM: starter-plan (4AM page)
+      Provider: Buttondown (theawakeclub)
+      Endpoint: https://buttondown.com/api/emails/embed-subscribe/theawakeclub
+      Tag: starter-plan
+    -->
+    <form class="email-form"
+          action="https://buttondown.com/api/emails/embed-subscribe/theawakeclub"
+          method="post"
+          target="_self"
           data-form-id="starter-plan"
           aria-label="Get the 7-Day Starter Plan">
       <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">
+      <input type="hidden" name="tag" value="starter-plan">
+      <input type="hidden" name="referrer_url" value="https://theawakeclub.com/find-your-4am.html">
       <button type="submit">Send It →</button>
     </form>
     <p class="email-fine">No spam. No fluff. Unsubscribe anytime.</p>

@@ -97,61 +97,28 @@
   }
 
   /* ============================================================
-     EMAIL FORMS
+     EMAIL FORMS — Buttondown (live)
      ------------------------------------------------------------
-     All forms share .email-form class and a data-form-id attr.
-     data-form-id values:
-       "starter-plan"  — 7-Day Plan capture (index, tools, start-here)
-       "join-list"     — Community/join list
-       "quiz-result"   — After quiz result
-       "daily-growth"  — Blog subscriber
+     Forms now submit natively via HTML POST to Buttondown.
+     No JavaScript interception needed or wanted — e.preventDefault()
+     has been removed so the browser POSTs directly to:
+       https://buttondown.com/api/emails/embed-subscribe/theawakeclub
 
-     TODO: When you choose a provider, replace the integration
-     block below with the real fetch/POST call. Each form's
-     data-form-id can be used to tag subscribers in your provider.
+     Each form includes:
+       name="email"                  — the subscriber's email
+       name="tag"                    — source tag (starter-plan, quiz-result, etc.)
+       name="referrer_url"           — the page the form lives on
 
-     Example (Buttondown):
-       fetch('https://buttondown.email/api/emails/embed-subscribe/YOUR_USERNAME', {
-         method: 'POST', body: new FormData(form)
-       });
+     Buttondown will redirect to its own confirmation page after submit.
+     That redirect is intentional for V1 — no custom success page yet.
 
-     Example (ConvertKit):
-       fetch('https://api.convertkit.com/v3/forms/FORM_ID/subscribe', {
-         method: 'POST',
-         headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify({ api_key: 'YOUR_KEY', email: emailVal, tags: [formId] })
-       });
+     data-form-id values (kept on elements for future analytics):
+       "starter-plan"  — index, tools, start-here, find-your-4am (bottom)
+       "quiz-result"   — find-your-4am (post-quiz capture)
+       "daily-growth"  — daily-growth page
+       "join-list"     — community section (future)
      ============================================================ */
-  document.querySelectorAll('.email-form').forEach(function (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var input  = form.querySelector('input[type="email"]');
-      var btn    = form.querySelector('button[type="submit"]');
-      var formId = form.dataset.formId || 'general';
-      if (!input || !input.value.trim()) return;
-
-      /* ---- EMAIL PROVIDER INTEGRATION POINT ----
-      fetch('https://YOUR_PROVIDER_ENDPOINT', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: input.value.trim(), form: formId })
-      })
-      .then(function() { showSuccess(); })
-      .catch(function() { btn.textContent = 'Try Again'; });
-      ---- END INTEGRATION POINT ---- */
-
-      // Temporary success state until provider is connected
-      showSuccess();
-
-      function showSuccess() {
-        btn.textContent = 'You\'re on the list ✓';
-        btn.classList.add('sent');
-        btn.disabled = true;
-        input.value = '';
-        input.disabled = true;
-      }
-    });
-  });
+  // No JS handler needed — forms POST natively to Buttondown.
 
   /* ============================================================
      QUIZ — V1.2.1

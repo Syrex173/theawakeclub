@@ -221,10 +221,21 @@
         EMAIL FORM: daily-growth subscriber
         TODO: Connect to email provider — tag as "daily-growth".
       -->
-      <form class="email-form" action="#" method="post"
+      <!--
+        EMAIL FORM: daily-growth
+        Provider: Buttondown (theawakeclub)
+        Endpoint: https://buttondown.com/api/emails/embed-subscribe/theawakeclub
+        Tag: daily-growth
+      -->
+      <form class="email-form"
+            action="https://buttondown.com/api/emails/embed-subscribe/theawakeclub"
+            method="post"
+            target="_self"
             data-form-id="daily-growth"
             aria-label="Subscribe to Daily Growth">
         <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">
+        <input type="hidden" name="tag" value="daily-growth">
+        <input type="hidden" name="referrer_url" value="https://theawakeclub.com/daily-growth.html">
         <button type="submit">Get Early Access →</button>
       </form>
       <p class="email-fine">No spam. No fluff. Unsubscribe anytime.</p>
