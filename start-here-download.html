@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Your Field Manual Library — The Awake Club</title>
+  <meta name="description" content="Your private Awake Club field manual library. Five tools. One direction. Every Day Forward. Download, bookmark, and use them when you need structure, gym consistency, focus, or a daily reset.">
+
+  <!-- Private subscriber page — do not index -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://theawakeclub.com/start-here-download.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://theawakeclub.com/start-here-download.html">
+  <meta property="og:title" content="Your Field Manual Library — The Awake Club">
+  <meta property="og:description" content="Five field manuals. One direction. Every Day Forward.">
+  <meta property="og:image" content="https://theawakeclub.com/assets/images/gym-real.jpg">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ====================================================
+       start-here-download.html  — page-specific CSS only
+       All base tokens + components inherit from style.css
+       ==================================================== */
+
+    /* ---- Hero ---- */
+    .lib-hero {
+      background: var(--charcoal);
+      padding-top: calc(var(--nav-height) + 72px);
+      padding-bottom: 72px;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Subtle orange glow right side */
+    .lib-hero::before {
+      content: '';
+      position: absolute; top: -20%; right: -5%;
+      width: 50%; height: 140%;
+      background: radial-gradient(ellipse at center, rgba(245,95,13,0.055) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* Private library badge */
+    .lib-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,95,13,0.12);
+      border: 1px solid rgba(245,95,13,0.3);
+      padding: 6px 14px;
+      margin-bottom: 24px;
+    }
+    .lib-badge-dot {
+      width: 7px; height: 7px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: lib-pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes lib-pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.35; }
+    }
+    .lib-badge-text {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+
+    /* Hero bookmark note */
+    .lib-bookmark-note {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 20px;
+    }
+    .lib-bookmark-note span { color: var(--steel); }
+
+    /* Large primary download button */
+    .btn-dl-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--orange);
+      color: #000;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 20px 40px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      min-height: 56px;
+    }
+    .btn-dl-primary:hover {
+      background: #ff7228;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(245,95,13,0.35);
+    }
+    .btn-dl-primary:active { transform: translateY(0); }
+    .btn-dl-icon { font-size: 1.15rem; flex-shrink: 0; }
+
+    /* One Step note */
+    .lib-one-step {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .lib-one-step strong { color: var(--orange); font-weight: 700; }
+
+    /* ---- Featured Manual (PDF #1) ---- */
+    .feat-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .feat-details-list {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .feat-detail-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .feat-detail-item:last-child { border-bottom: none; }
+    .feat-detail-arrow {
+      color: var(--orange);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .feat-detail-text {
+      font-size: 0.86rem;
+      font-weight: 300;
+      color: var(--silver);
+      line-height: 1.55;
+    }
+    .feat-detail-text strong { color: var(--white); font-weight: 600; }
+
+    /* Awake Code 4-cell strip */
+    .code-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 16px;
+    }
+    .code-cell {
+      background: var(--dark);
+      padding: 14px 12px 12px;
+      text-align: center;
+    }
+    .code-cell-word {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--orange);
+      display: block;
+    }
+    .code-cell-def {
+      font-size: 0.7rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ---- Library Grid (5 cards) ---- */
+    .library-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+    /* 5 cards in a 3-col grid: row 1 = 3, row 2 = 2 centred */
+    .library-grid > *:nth-child(4) {
+      grid-column: 1;
+    }
+    .library-grid > *:nth-child(5) {
+      grid-column: 2;
+    }
+
+    .lib-card {
+      background: var(--charcoal);
+      padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      transition: background 0.2s;
+    }
+    .lib-card:hover { background: var(--dark); }
+
+    /* "Start Here" card — slightly highlighted */
+    .lib-card.featured-card {
+      background: var(--dark);
+      border-top: 3px solid var(--orange);
+    }
+    .lib-card.featured-card:hover { background: #202020; }
+
+    .lib-card-badge {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--rule);
+      padding: 3px 8px;
+      display: inline-block;
+      align-self: flex-start;
+    }
+    .lib-card.featured-card .lib-card-badge {
+      color: var(--orange);
+      background: rgba(245,95,13,0.12);
+    }
+
+    .lib-card-num {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 2rem;
+      color: var(--rule-light);
+      line-height: 1;
+      position: absolute;
+      top: 20px; right: 20px;
+    }
+    .lib-card.featured-card .lib-card-num { color: rgba(245,95,13,0.2); }
+
+    .lib-card-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1.2;
+      margin-top: 4px;
+      padding-right: 32px; /* clear the num */
+    }
+
+    .lib-card-subtitle {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--steel);
+      line-height: 1.55;
+    }
+
+    .lib-card-when {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.5;
+      border-top: 1px solid var(--rule);
+      padding-top: 10px;
+      margin-top: 2px;
+      flex: 1;
+    }
+    .lib-card-when strong {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    /* Download button inside card */
+    .lib-card .btn-dl-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      text-decoration: none;
+      min-height: 40px;
+      transition: all 0.2s;
+      border: 1px solid var(--rule-light);
+      color: var(--silver);
+      background: transparent;
+      margin-top: auto;
+    }
+    .lib-card .btn-dl-card:hover {
+      border-color: var(--orange-border);
+      color: var(--orange);
+      background: var(--orange-glow);
+    }
+    .lib-card.featured-card .btn-dl-card {
+      background: var(--orange);
+      color: #000;
+      border-color: var(--orange);
+      font-weight: 900;
+    }
+    .lib-card.featured-card .btn-dl-card:hover {
+      background: #ff7228;
+      border-color: #ff7228;
+    }
+
+    /* ---- Progression Path ---- */
+    .path-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .path-step {
+      display: grid;
+      grid-template-columns: 0.55in 1fr;
+      gap: 0 20px;
+      align-items: start;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+    }
+    .path-step:last-child { border-bottom: none; }
+    /* Connecting line between steps */
+    .path-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 19px; bottom: 0;
+      width: 2px; height: 20px;
+      background: var(--rule-light);
+    }
+    .path-num {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .path-num-circle {
+      width: 38px; height: 38px;
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1rem;
+      color: var(--orange);
+      flex-shrink: 0;
+    }
+    .path-content {}
+    .path-theme {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+    .path-manual {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+    .path-desc {
+      font-size: 0.84rem;
+      font-weight: 300;
+      color: var(--steel);
+      line-height: 1.55;
+    }
+
+    /* ---- Next Moves ---- */
+    .moves-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .move-card {
+      background: var(--charcoal);
+      border: 1px solid var(--rule);
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .move-card:hover { border-color: var(--rule-light); background: var(--dark); }
+    /* Non-link move card (Post Your Forward) */
+    .move-card-static {
+      background: var(--charcoal);
+      border: 1px solid var(--rule);
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .move-card-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--white);
+    }
+    .move-card-sub {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .move-card-sub em { color: var(--steel); font-style: italic; }
+    .move-card-cta {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-top: 4px;
+    }
+    .move-card:hover .move-card-cta { color: #ff7228; }
+
+    /* ---- Founder note ---- */
+    .founder-note {
+      background: var(--dark);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--orange);
+      padding: 20px 24px;
+    }
+    .founder-note-label {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .founder-note p {
+      font-size: 0.94rem;
+      font-weight: 300;
+      color: var(--silver);
+      line-height: 1.75;
+    }
+
+    /* ---- Closing statement ---- */
+    .lib-statement {
+      background: var(--charcoal);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 56px 0;
+      text-align: center;
+    }
+    .lib-statement-phrase {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      text-transform: uppercase;
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      color: var(--white);
+    }
+    .lib-statement-phrase span { color: var(--orange); }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 1024px) {
+      .library-grid { grid-template-columns: repeat(2, 1fr); }
+      .library-grid > *:nth-child(4),
+      .library-grid > *:nth-child(5) { grid-column: auto; }
+    }
+    @media (max-width: 768px) {
+      .lib-hero { padding-top: calc(var(--nav-height) + 48px); padding-bottom: 52px; }
+      .feat-block { grid-template-columns: 1fr; gap: 36px; }
+      .library-grid { grid-template-columns: 1fr; }
+      .library-grid > *:nth-child(4),
+      .library-grid > *:nth-child(5) { grid-column: auto; }
+      .code-strip { grid-template-columns: repeat(2, 1fr); }
+      .moves-grid { grid-template-columns: 1fr; }
+      .btn-dl-primary { font-size: 1rem; padding: 17px 28px; width: 100%; justify-content: center; }
+      .path-step { grid-template-columns: 44px 1fr; }
+      .path-num-circle { width: 32px; height: 32px; font-size: 0.88rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV — identical to all pages, no active state (utility page) -->
+<nav class="site-nav" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo">The <span class="accent">Awake</span> Club</a>
+  <ul class="nav-links" role="list">
+    <li><a href="start-here.html">Start Here</a></li>
+    <li><a href="find-your-4am.html">Find Your 4AM</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="daily-growth.html">Daily Growth</a></li>
+    <li><a href="index.html#community" class="nav-cta">Join</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" aria-label="Mobile navigation">
+  <a href="start-here.html">Start Here</a>
+  <a href="find-your-4am.html">Find Your 4AM</a>
+  <a href="tools.html">Tools</a>
+  <a href="daily-growth.html">Daily Growth</a>
+  <a href="index.html#community">Join</a>
+</nav>
+
+
+<!-- ============================================================
+     1. HERO — welcome + primary download
+     ============================================================ -->
+<section class="lib-hero" aria-labelledby="lib-hed">
+  <div class="container">
+
+    <div class="lib-badge anim-1" role="status">
+      <span class="lib-badge-dot" aria-hidden="true"></span>
+      <span class="lib-badge-text">Private Field Manual Library</span>
+    </div>
+
+    <h1 class="display-xl anim-2" id="lib-hed" style="margin-bottom:20px;">
+      You're In.<br>Now Move<br><span class="accent-orange">Forward.</span>
+    </h1>
+
+    <p class="lead anim-3" style="max-width:580px;margin-bottom:36px;">
+      Welcome to The Awake Club. Your field manuals are below. <strong>Start with the 7-Day Starter Plan</strong>, then use the rest of the library when you need structure, gym consistency, focus, or a daily reset.
+    </p>
+
+    <div class="anim-4" style="display:flex;flex-direction:column;gap:14px;max-width:520px;">
+      <!--
+        PDF #1 primary download
+        File: assets/downloads/7-day-every-day-forward-starter-plan.pdf
+      -->
+      <a href="assets/downloads/7-day-every-day-forward-starter-plan.pdf"
+         class="btn-dl-primary"
+         download="7-Day-Every-Day-Forward-Starter-Plan.pdf"
+         aria-label="Download the 7-Day Every Day Forward Starter Plan PDF">
+        <span class="btn-dl-icon" aria-hidden="true">↓</span>
+        Download the 7-Day Starter Plan
+      </a>
+      <p class="lib-one-step"><strong>One Step Still Counts.</strong> Do not wait for a perfect day to begin.</p>
+    </div>
+
+    <p class="lib-bookmark-note" style="margin-top:28px;">
+      <span>Bookmark this page</span> — it is your private download hub.
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     2. PRIMARY MANUAL FEATURE
+     ============================================================ -->
+<section class="section-pad" aria-labelledby="feat-hed" style="background:var(--black);">
+  <div class="container">
+
+    <div class="feat-block">
+
+      <!-- Left: description -->
+      <div data-reveal>
+        <p class="section-label">Start Here</p>
+        <h2 class="display-lg" id="feat-hed" style="font-size:clamp(2.2rem,4.5vw,3.8rem);margin-bottom:12px;">
+          The 7-Day<br>Every Day<br><span class="accent-orange">Forward</span><br>Starter Plan.
+        </h2>
+        <p class="body-text" style="margin-bottom:20px;">
+          Your first Awake Club field manual. Use it to claim your window, move your body, build one thing forward, and reflect without drama.
+        </p>
+
+        <div class="feat-details-list" aria-label="What's inside PDF #1">
+          <div class="feat-detail-item">
+            <span class="feat-detail-arrow">→</span>
+            <span class="feat-detail-text"><strong>Claim your focus window</strong> — before the world claims it first</span>
+          </div>
+          <div class="feat-detail-item">
+            <span class="feat-detail-arrow">→</span>
+            <span class="feat-detail-text"><strong>Prime your body</strong> — movement before excuses settle in</span>
+          </div>
+          <div class="feat-detail-item">
+            <span class="feat-detail-arrow">→</span>
+            <span class="feat-detail-text"><strong>Build one meaningful task</strong> — not seven, one</span>
+          </div>
+          <div class="feat-detail-item">
+            <span class="feat-detail-arrow">→</span>
+            <span class="feat-detail-text"><strong>Reflect without judgment</strong> — honest data, not guilt loops</span>
+          </div>
+          <div class="feat-detail-item">
+            <span class="feat-detail-arrow">→</span>
+            <span class="feat-detail-text"><strong>Reset when the plan breaks</strong> — because it will</span>
+          </div>
+        </div>
+
+        <div style="margin-top:24px;">
+          <a href="assets/downloads/7-day-every-day-forward-starter-plan.pdf"
+             class="btn btn-primary btn-arrow"
+             download="7-Day-Every-Day-Forward-Starter-Plan.pdf">
+            Download Manual #1
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Awake Code + context -->
+      <div data-reveal data-delay="2">
+        <p class="section-label">The Framework Inside</p>
+        <h3 class="display-md" style="font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:12px;">
+          Claim. Prime.<br>Build. <span class="accent-orange">Reflect.</span>
+        </h3>
+        <p class="body-text" style="margin-bottom:16px;">
+          Four steps. Any schedule. You don't need to do all four perfectly — you need to do something every day.
+        </p>
+
+        <div class="code-strip" role="list" aria-label="The Awake Code">
+          <div class="code-cell" role="listitem">
+            <span class="code-cell-word">Claim</span>
+            <span class="code-cell-def">Protect your window before the world claims it.</span>
+          </div>
+          <div class="code-cell" role="listitem">
+            <span class="code-cell-word">Prime</span>
+            <span class="code-cell-def">Move your body before excuses settle in.</span>
+          </div>
+          <div class="code-cell" role="listitem">
+            <span class="code-cell-word">Build</span>
+            <span class="code-cell-def">One meaningful thing that moves life forward.</span>
+          </div>
+          <div class="code-cell" role="listitem">
+            <span class="code-cell-word">Reflect</span>
+            <span class="code-cell-def">Review honestly, adjust, and repeat.</span>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;background:var(--dark);border:1px solid var(--rule);padding:14px 16px;">
+          <p class="body-text" style="font-size:0.84rem;">
+            This plan works across every schedule type — early riser, night shift, new parent, student, trade worker. The 4AM adjustments section covers all of them.
+          </p>
+        </div>
+
+        <div style="margin-top:16px;background:var(--dark);border:1px solid var(--rule);padding:14px 16px;">
+          <p style="font-family:var(--font-display);font-weight:700;font-size:0.88rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--orange);margin-bottom:4px;">No equipment required</p>
+          <p class="body-text" style="font-size:0.84rem;">
+            for the first three days. The plan meets you wherever you actually are.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     3. FIELD MANUAL LIBRARY GRID
+     ============================================================ -->
+<section class="section-pad" aria-labelledby="library-hed" style="background:var(--charcoal);">
+  <div class="container">
+
+    <div data-reveal style="margin-bottom:40px;">
+      <p class="section-label">Your Library</p>
+      <h2 class="display-lg" id="library-hed" style="font-size:clamp(2.2rem,4vw,3.5rem);margin-bottom:10px;">
+        Your Awake Club<br>Field Manual Library.
+      </h2>
+      <p class="lead" style="max-width:560px;">
+        Five tools. One direction. <strong>Every Day Forward.</strong>
+      </p>
+    </div>
+
+    <div class="library-grid" data-reveal data-delay="1" role="list" aria-label="Field Manual Library">
+
+      <!-- Card 1 — PDF #1 (featured) -->
+      <div class="lib-card featured-card" role="listitem">
+        <span class="lib-card-badge">Start Here</span>
+        <span class="lib-card-num" aria-hidden="true">01</span>
+        <h3 class="lib-card-title">The 7-Day Every Day Forward Starter Plan</h3>
+        <p class="lib-card-subtitle">General discipline and daily structure.</p>
+        <div class="lib-card-when">
+          <strong>Use this when</strong>
+          You need a simple first week to stop drifting and start moving forward.
+        </div>
+        <a href="assets/downloads/7-day-every-day-forward-starter-plan.pdf"
+           class="btn-dl-card"
+           download="7-Day-Every-Day-Forward-Starter-Plan.pdf"
+           aria-label="Download Manual 1: 7-Day Every Day Forward Starter Plan">
+          ↓ Download Manual #1
+        </a>
+      </div>
+
+      <!-- Card 2 — PDF #2 -->
+      <div class="lib-card" role="listitem">
+        <span class="lib-card-badge">Gym Habit</span>
+        <span class="lib-card-num" aria-hidden="true">02</span>
+        <h3 class="lib-card-title">Dress Up. Show Up.</h3>
+        <p class="lib-card-subtitle">The No-Overwhelm Gym Starter.</p>
+        <div class="lib-card-when">
+          <strong>Use this when</strong>
+          You want to start training without burning out in week one.
+        </div>
+        <a href="assets/downloads/dress-up-show-up-no-overwhelm-gym-starter.pdf"
+           class="btn-dl-card"
+           download="Dress-Up-Show-Up-No-Overwhelm-Gym-Starter.pdf"
+           aria-label="Download Manual 2: Dress Up. Show Up.">
+          ↓ Download Manual #2
+        </a>
+      </div>
+
+      <!-- Card 3 — PDF #3 -->
+      <div class="lib-card" role="listitem">
+        <span class="lib-card-badge">Gym Focus</span>
+        <span class="lib-card-num" aria-hidden="true">03</span>
+        <h3 class="lib-card-title">Click. Lift. Don't Drift.</h3>
+        <p class="lib-card-subtitle">Stop Scrolling Your Workout.</p>
+        <div class="lib-card-when">
+          <strong>Use this when</strong>
+          Your phone keeps stealing your rest periods and attention between sets.
+        </div>
+        <a href="assets/downloads/click-lift-dont-drift-stop-scrolling-your-workout.pdf"
+           class="btn-dl-card"
+           download="Click-Lift-Dont-Drift-Stop-Scrolling-Your-Workout.pdf"
+           aria-label="Download Manual 3: Click. Lift. Don't Drift.">
+          ↓ Download Manual #3
+        </a>
+      </div>
+
+      <!-- Card 4 — PDF #4 -->
+      <div class="lib-card" role="listitem">
+        <span class="lib-card-badge">Intentional Training</span>
+        <span class="lib-card-num" aria-hidden="true">04</span>
+        <h3 class="lib-card-title">Put Your Mind Where Your Weight Is.</h3>
+        <p class="lib-card-subtitle">The Intentional Training Focus Guide.</p>
+        <div class="lib-card-when">
+          <strong>Use this when</strong>
+          You want your attention inside the movement, not wandering around the room.
+        </div>
+        <a href="assets/downloads/put-your-mind-where-your-weight-is.pdf"
+           class="btn-dl-card"
+           download="Put-Your-Mind-Where-Your-Weight-Is.pdf"
+           aria-label="Download Manual 4: Put Your Mind Where Your Weight Is">
+          ↓ Download Manual #4
+        </a>
+      </div>
+
+      <!-- Card 5 — PDF #5 -->
+      <div class="lib-card" role="listitem">
+        <span class="lib-card-badge">Daily System</span>
+        <span class="lib-card-num" aria-hidden="true">05</span>
+        <h3 class="lib-card-title">The Awake Daily System.</h3>
+        <p class="lib-card-subtitle">Claim. Prime. Build. Reflect.</p>
+        <div class="lib-card-when">
+          <strong>Use this when</strong>
+          You need a reusable daily sheet to keep on your desk, wall, notebook, or gym bag.
+        </div>
+        <a href="assets/downloads/the-awake-daily-system.pdf"
+           class="btn-dl-card"
+           download="The-Awake-Daily-System.pdf"
+           aria-label="Download Manual 5: The Awake Daily System">
+          ↓ Download Manual #5
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     4. PROGRESSION PATH
+     ============================================================ -->
+<section class="section-pad" aria-labelledby="path-hed">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+
+      <div data-reveal>
+        <p class="section-label">How to Use the Library</p>
+        <h2 class="display-md" id="path-hed" style="font-size:clamp(2rem,3.5vw,3rem);margin-bottom:10px;">
+          There's a Natural<br><span class="accent-orange">Sequence.</span>
+        </h2>
+        <p class="body-text" style="margin-bottom:24px;">
+          You don't need to use all five at once. Follow the path from structure to daily system — or jump to whichever manual fits where you are right now.
+        </p>
+        <div style="background:var(--dark);border:1px solid var(--rule);padding:14px 16px;">
+          <p class="body-text" style="font-size:0.84rem;">
+            There's no wrong order. Start with what's most urgent, then come back for the rest. The manuals are tools, not assignments.
+          </p>
+        </div>
+      </div>
+
+      <div data-reveal data-delay="2">
+        <div class="path-steps" role="list" aria-label="Library progression path">
+
+          <div class="path-step" role="listitem">
+            <div class="path-num">
+              <div class="path-num-circle">1</div>
+            </div>
+            <div class="path-content">
+              <p class="path-theme">Structure</p>
+              <p class="path-manual">7-Day Starter Plan</p>
+              <p class="path-desc">Build your first week of daily structure.</p>
+            </div>
+          </div>
+
+          <div class="path-step" role="listitem">
+            <div class="path-num">
+              <div class="path-num-circle">2</div>
+            </div>
+            <div class="path-content">
+              <p class="path-theme">Habit</p>
+              <p class="path-manual">Dress Up. Show Up.</p>
+              <p class="path-desc">Lower the friction to enter the gym.</p>
+            </div>
+          </div>
+
+          <div class="path-step" role="listitem">
+            <div class="path-num">
+              <div class="path-num-circle">3</div>
+            </div>
+            <div class="path-content">
+              <p class="path-theme">Focus</p>
+              <p class="path-manual">Click. Lift. Don't Drift.</p>
+              <p class="path-desc">Protect your attention between sets.</p>
+            </div>
+          </div>
+
+          <div class="path-step" role="listitem">
+            <div class="path-num">
+              <div class="path-num-circle">4</div>
+            </div>
+            <div class="path-content">
+              <p class="path-theme">Intention</p>
+              <p class="path-manual">Put Your Mind Where Your Weight Is.</p>
+              <p class="path-desc">Bring attention into the movement itself.</p>
+            </div>
+          </div>
+
+          <div class="path-step" role="listitem">
+            <div class="path-num">
+              <div class="path-num-circle">5</div>
+            </div>
+            <div class="path-content">
+              <p class="path-theme">Daily System</p>
+              <p class="path-manual">The Awake Daily System.</p>
+              <p class="path-desc">Run Claim / Prime / Build / Reflect every day.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     5. NEXT MOVES
+     ============================================================ -->
+<section class="section-pad" aria-labelledby="moves-hed" style="background:var(--charcoal);">
+  <div class="container">
+
+    <div data-reveal style="margin-bottom:36px;">
+      <p class="section-label">Next Moves</p>
+      <h2 class="display-md" id="moves-hed" style="font-size:clamp(2rem,3.5vw,3rem);margin-bottom:10px;">
+        While You're Here.
+      </h2>
+      <p class="lead" style="max-width:540px;">Free. Practical. Works right now.</p>
+    </div>
+
+    <div class="moves-grid" data-reveal data-delay="1">
+
+      <a href="find-your-4am.html#quiz" class="move-card">
+        <div class="move-card-title">Take the Find Your 4AM Quiz</div>
+        <div class="move-card-sub">Find your protected window type and the first structure that fits your real life. 8 questions. 4 minutes. Directly connected to the Starter Plan you just downloaded.</div>
+        <div class="move-card-cta">Take the Quiz →</div>
+      </a>
+
+      <a href="tools.html#gym-timer" class="move-card">
+        <div class="move-card-title">Use the Gym Focus Timer</div>
+        <div class="move-card-sub">A distraction-free rest timer for training without phone drift. Pairs directly with Click. Lift. Don't Drift. (Manual #3). No app. Free.</div>
+        <div class="move-card-cta">Open the Timer →</div>
+      </a>
+
+      <!-- Post Your Forward — no link yet, prompt card only -->
+      <div class="move-card-static">
+        <div class="move-card-title">Post Your Forward</div>
+        <div class="move-card-sub">
+          Tell someone what you did today. One sentence is enough.<br>
+          <em>"Today I showed up even though I didn't feel like it."</em><br>
+          That's it. That's how this works.
+        </div>
+      </div>
+
+      <a href="index.html" class="move-card">
+        <div class="move-card-title">Return Home</div>
+        <div class="move-card-sub">Go back to the main Awake Club site — the manifesto, the gym philosophy, the community, and everything else built for people who are done drifting.</div>
+        <div class="move-card-cta">Go Home →</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     6. FOUNDER NOTE
+     ============================================================ -->
+<section class="section-pad" aria-label="Founder note">
+  <div class="container">
+    <div style="max-width:720px;margin:0 auto;" data-reveal>
+      <div class="founder-note">
+        <div class="founder-note-label">A Note</div>
+        <p>
+          This started as a real routine, not a theory. The manuals are simple because life is already complicated. Use what helps, repeat what works, and keep moving Every Day Forward.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CLOSING STATEMENT
+     ============================================================ -->
+<section class="lib-statement" aria-label="Closing statement">
+  <div class="container">
+    <p class="lib-statement-phrase">
+      Every Day<br><span>Forward.</span>
+    </p>
+  </div>
+</section>
+
+
+<!-- FOOTER — identical to all pages -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">The <span class="accent">Awake</span> Club</a>
+        <p class="footer-tagline">Every Day Forward</p>
+        <p>A discipline-first lifestyle movement for people who are done drifting and ready to build every day forward.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="start-here.html">Start Here</a></li>
+          <li><a href="find-your-4am.html">Find Your 4AM</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="daily-growth.html">Daily Growth</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <ul>
+          <li><a href="find-your-4am.html#quiz">4AM Quiz</a></li>
+          <li><a href="tools.html#starter-plan">7-Day Plan</a></li>
+          <li><a href="tools.html#gym-timer">Gym Focus Timer</a></li>
+          <li><a href="tools.html#daily-checklist">Daily Checklist</a></li>
+          <li><a href="tools.html">All Tools</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Core Beliefs</h4>
+        <ul>
+          <li><a href="start-here.html">Act, Don't React.</a></li>
+          <li><a href="start-here.html">The Habit Before the Intensity.</a></li>
+          <li><a href="start-here.html">Every Day Forward.</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-disclaimer">
+        The Awake Club is an independent personal development project. Content is shared for educational and motivational purposes only and is not medical advice, fitness instruction, nutritional guidance, psychological counsel, financial advice, legal advice, or professional coaching of any kind. Results vary. Consult qualified professionals before beginning any new health, fitness, or lifestyle practice.
+      </p>
+      <p class="footer-copy">© 2025 theawakeclub.com</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
