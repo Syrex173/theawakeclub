@@ -375,44 +375,27 @@ article.article-card { cursor: default; }
   line-height: 1.5; flex: 1; display: block;
 }
 
-/* Quiz navigation buttons
-   V1.2.1: Single .quiz-nav bar sits outside question cards.
-   Back = dark outlined, Next/Submit = orange primary.
-*/
+/* Quiz navigation buttons */
 .quiz-nav {
-  display: flex; gap: 12px; margin-top: 24px; align-items: center;
+  display: flex; gap: 10px; margin-top: 20px; align-items: center;
 }
-
-/* Back — dark outlined secondary */
 .quiz-nav-back {
-  background: transparent;
-  color: var(--steel);
-  border: 1px solid var(--rule-light);
-  font-family: var(--font-display); font-weight: 700; font-size: 0.88rem;
+  background: transparent; color: var(--steel); border: 1px solid var(--rule);
+  font-family: var(--font-display); font-weight: 700; font-size: 0.82rem;
   letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 14px 24px; cursor: pointer;
-  transition: border-color 0.2s, color 0.2s;
-  min-height: 48px; white-space: nowrap;
+  padding: 12px 24px; cursor: pointer; transition: all 0.2s;
+  min-height: 44px;
 }
 .quiz-nav-back:hover { border-color: var(--steel); color: var(--white); }
-
-/* Next — orange primary */
 .quiz-nav-next {
   background: var(--orange); color: #000; border: none;
-  font-family: var(--font-display); font-weight: 700; font-size: 0.95rem;
+  font-family: var(--font-display); font-weight: 700; font-size: 0.9rem;
   letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 14px 32px; cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
-  min-height: 48px; flex: 1;
+  padding: 12px 28px; cursor: pointer; transition: background 0.2s;
+  min-height: 44px; flex: 1;
 }
-.quiz-nav-next:hover { background: #ff7228; transform: translateY(-1px); }
-.quiz-nav-next:disabled { opacity: 0.38; cursor: default; transform: none; }
-
-/* Submit (See My Result) — same as Next but slightly distinct label styling */
-.quiz-nav-submit {
-  /* Inherits .quiz-nav-next styles */
-  font-size: 0.95rem;
-}
+.quiz-nav-next:hover { background: #ff7228; }
+.quiz-nav-next:disabled { opacity: 0.4; cursor: default; }
 
 /* Result card (V1.2: richer structure) */
 .quiz-result-card {
@@ -693,10 +676,7 @@ article.article-card { cursor: default; }
   .quiz-q-text { font-size: 0.96rem; }
   .quiz-option { padding: 10px 12px; gap: 10px; }
   .quiz-option label { font-size: 0.85rem; }
-  /* Nav bar: stack back/next vertically, full width */
-  .quiz-nav { flex-direction: row; flex-wrap: wrap; gap: 10px; }
-  .quiz-nav-back { width: auto; min-width: 80px; flex-shrink: 0; padding: 12px 20px; }
-  .quiz-nav-next { padding: 14px 20px; }
+  .quiz-nav-next { padding: 12px 20px; }
   .quiz-result-card { padding: 24px 18px; }
   .quiz-result-row { grid-template-columns: 100px 1fr; }
   .quiz-result-actions { flex-direction: column; }
@@ -712,5 +692,171 @@ article.article-card { cursor: default; }
   .quiz-q-text { font-size: 0.9rem; }
   .quiz-result-row { grid-template-columns: 1fr; gap: 2px; }
   .quiz-result-row-label { font-size: 0.64rem; }
-  .quiz-nav-back { font-size: 0.8rem; padding: 10px 16px; }
+}
+
+/* ============================================
+   PLAYLISTS PAGE — No-Drift Sound Library v1.0
+   ============================================ */
+
+.protocol-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--orange);
+  border: 1px solid var(--orange-border); padding: 6px 16px;
+  margin-bottom: 28px;
+}
+.protocol-badge::before { content: '▶'; font-size: 0.5rem; }
+
+/* Filter bar */
+.pl-filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+.pl-filter-tab {
+  font-family: var(--font-display); font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 18px;
+  border: 1px solid var(--rule); color: var(--steel); cursor: pointer;
+  transition: all 0.18s; background: none; min-height: 44px;
+}
+.pl-filter-tab:hover, .pl-filter-tab.active {
+  border-color: var(--orange-border); color: var(--orange); background: var(--orange-glow);
+}
+
+/* Playlist card grid */
+.playlist-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+}
+
+/* Playlist card */
+.playlist-card {
+  background: var(--charcoal); padding: 32px 28px;
+  display: flex; flex-direction: column;
+  transition: background 0.2s;
+}
+.playlist-card:hover { background: var(--dark); }
+.playlist-cat-name {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 1.6rem; text-transform: uppercase; letter-spacing: 0.03em;
+  color: var(--orange); line-height: 1; margin-bottom: 12px;
+}
+.playlist-desc {
+  font-size: 0.88rem; font-weight: 300; color: var(--steel);
+  line-height: 1.7; margin-bottom: 16px; flex: 1;
+}
+.playlist-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; }
+.playlist-tag {
+  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+  border: 1px solid var(--rule); padding: 3px 9px; line-height: 1.6;
+}
+.playlist-btns {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  border-top: 1px solid var(--rule); padding-top: 20px; margin-top: auto;
+}
+
+/* Compact platform buttons */
+.pl-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-display); font-weight: 700; font-size: 0.72rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 8px 14px; cursor: pointer; border: none;
+  transition: all 0.18s; text-decoration: none; min-height: 36px;
+}
+.pl-btn-spotify {
+  color: #1DB954; border: 1px solid rgba(29,185,84,0.28); background: transparent;
+}
+.pl-btn-spotify:hover { background: rgba(29,185,84,0.08); border-color: #1DB954; }
+.pl-btn-yt {
+  color: var(--silver); border: 1px solid var(--rule-light); background: transparent;
+}
+.pl-btn-yt:hover { border-color: var(--steel); background: rgba(255,255,255,0.04); color: var(--white); }
+
+/* Live radio grid */
+.radio-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+}
+.radio-card {
+  background: var(--dark); padding: 28px 24px;
+  display: flex; flex-direction: column; gap: 10px;
+  text-decoration: none; color: inherit; transition: background 0.2s;
+}
+.radio-card:hover { background: var(--charcoal); }
+.radio-card-name {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--white); line-height: 1.1;
+}
+.radio-card-desc {
+  font-size: 0.84rem; font-weight: 300; color: var(--muted);
+  line-height: 1.65; flex: 1;
+}
+.radio-card-cta {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--orange);
+}
+
+/* How-to step list */
+.pl-how-list {
+  display: flex; flex-direction: column; gap: 1px;
+  background: var(--rule); border: 1px solid var(--rule);
+}
+.pl-how-item {
+  background: var(--charcoal); padding: 20px 28px;
+  display: flex; align-items: flex-start; gap: 24px;
+}
+.pl-how-item:hover { background: var(--dark); }
+.pl-how-num {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 2.2rem; color: var(--orange); line-height: 1;
+  flex-shrink: 0; width: 44px;
+}
+.pl-how-text {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--white); line-height: 1.2; margin-bottom: 4px;
+}
+.pl-how-sub {
+  font-size: 0.82rem; font-weight: 300; color: var(--muted); line-height: 1.65;
+}
+
+/* Crosslink grid */
+.pl-crosslink-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+}
+.pl-crosslink-card {
+  background: var(--charcoal); padding: 28px 24px;
+  display: flex; flex-direction: column; gap: 8px;
+  text-decoration: none; color: inherit; transition: background 0.2s;
+}
+.pl-crosslink-card:hover { background: var(--dark); }
+.pl-crosslink-icon { font-size: 1.1rem; color: var(--orange); }
+.pl-crosslink-name {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--white); line-height: 1.2;
+}
+.pl-crosslink-desc {
+  font-size: 0.82rem; font-weight: 300; color: var(--muted); line-height: 1.65; flex: 1;
+}
+.pl-crosslink-cta {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--orange); margin-top: 4px;
+}
+
+/* Playlists responsive — 1024px */
+@media (max-width: 1024px) {
+  .radio-grid { grid-template-columns: repeat(2, 1fr); }
+  .pl-crosslink-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Playlists responsive — 768px */
+@media (max-width: 768px) {
+  .playlist-grid { grid-template-columns: 1fr; }
+  .radio-grid { grid-template-columns: 1fr; }
+  .pl-crosslink-grid { grid-template-columns: 1fr; }
+  .pl-filter-bar { gap: 6px; }
+  .pl-filter-tab { padding: 8px 14px; font-size: 0.74rem; }
+  .playlist-card { padding: 24px 20px; }
+  .pl-how-item { padding: 16px 20px; gap: 16px; }
+  .pl-how-num { font-size: 1.6rem; width: 32px; }
 }
