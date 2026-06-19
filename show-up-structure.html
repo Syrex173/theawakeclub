@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Your Show-Up Structure — The Awake Club</title>
+  <meta name="description" content="8 behavior-first questions. Find the repeatable training structure that fits your real schedule, friction, and attention. No body stats. No perfect plan to chase.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://theawakeclub.com/show-up-structure.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://theawakeclub.com/show-up-structure.html">
+  <meta property="og:title" content="Find Your Show-Up Structure — The Awake Club">
+  <meta property="og:description" content="We don't measure how much you lift today — we build the structure that gets you back next week.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo">The <span class="accent">Awake</span> Club</a>
+  <ul class="nav-links" role="list">
+    <li><a href="start-here.html">Start Here</a></li>
+    <li><a href="find-your-4am.html">Find Your 4AM</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="playlists.html">Playlists</a></li>
+    <li><a href="daily-growth.html">Daily Growth</a></li>
+    <li><a href="index.html#community" class="nav-cta">Join</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" aria-label="Mobile navigation">
+  <a href="start-here.html">Start Here</a>
+  <a href="find-your-4am.html">Find Your 4AM</a>
+  <a href="tools.html">Tools</a>
+  <a href="playlists.html">Playlists</a>
+  <a href="daily-growth.html">Daily Growth</a>
+  <a href="index.html#community">Join</a>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero" style="background:var(--charcoal);" aria-labelledby="sus-hero-hed">
+  <div class="container">
+    <p class="eyebrow anim-1" style="margin-bottom:20px;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--orange-border);padding:6px 14px;">BEHAVIOR-FIRST STRUCTURE FINDER</p>
+    <h1 class="display-xl anim-2" style="margin:0 0 24px;">
+      Find Your<br>Show-Up<br><span class="accent-orange">Structure.</span>
+    </h1>
+    <p class="lead anim-3" style="max-width:560px;margin-bottom:14px;">
+      We don't measure how much you lift today — we build the structure that gets you back next week.
+    </p>
+    <p class="body-text anim-3" style="max-width:520px;margin-bottom:36px;">
+      8 questions. About 4 minutes. No body stats to enter, no perfect plan to chase — just your real schedule, your real friction, and a structure built to survive both.
+    </p>
+    <div class="anim-4" style="display:flex;gap:14px;flex-wrap:wrap;">
+      <a href="#sus-quiz" class="btn btn-primary">Take the Quiz →</a>
+      <a href="find-your-4am.html" class="btn btn-ghost">Find Your 4AM First →</a>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ SECTION -->
+<section class="section-pad" id="sus-quiz" aria-labelledby="sus-quiz-hed">
+  <div class="container">
+
+    <div class="sus-quiz-layout">
+
+      <!-- Left: intro -->
+      <div class="sus-quiz-intro" data-reveal>
+        <p class="section-label">The Quiz</p>
+        <h2 class="display-md" id="sus-quiz-hed" style="margin-bottom:20px;">
+          What's<br>Your<br><span class="accent-orange">Structure?</span>
+        </h2>
+        <p class="body-text" style="margin-bottom:24px;">
+          8 questions. One at a time. No body stats, no injury questions, no perfect plan to build.
+        </p>
+        <div style="background:var(--charcoal);border:1px solid var(--rule);padding:24px 20px;margin-bottom:20px;">
+          <p style="font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">You'll get</p>
+          <ul style="display:flex;flex-direction:column;gap:10px;">
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:var(--steel);"><span style="color:var(--orange);">→</span>Your matched show-up track (7 possible)</li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:var(--steel);"><span style="color:var(--orange);">→</span>A repeatable session structure</li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:var(--steel);"><span style="color:var(--orange);">→</span>Your biggest friction point addressed</li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:var(--steel);"><span style="color:var(--orange);">→</span>Tools and a manual that fit your track</li>
+          </ul>
+        </div>
+        <p style="font-size:.75rem;color:var(--muted);line-height:1.65;">
+          This tool gives general structure guidance only. It is not medical advice or personalized fitness instruction.
+        </p>
+      </div>
+
+      <!-- Right: quiz -->
+      <div class="sus-quiz-right" data-reveal data-delay="1">
+
+        <!-- Progress bar -->
+        <div class="quiz-progress-wrap">
+          <div class="quiz-progress-label">
+            <span style="font-family:var(--font-display);font-weight:700;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;">Progress</span>
+            <span id="sus-progress-text" aria-live="polite">1 of 8</span>
+          </div>
+          <div class="quiz-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Quiz progress">
+            <div class="quiz-progress-fill" id="sus-progress-fill"></div>
+          </div>
+        </div>
+
+        <!-- Questions rendered by JS -->
+        <div id="sus-questions" aria-label="Find Your Show-Up Structure Quiz"></div>
+
+        <!-- Result rendered by JS -->
+        <div id="sus-result" style="display:none;" aria-live="polite"></div>
+
+      </div>
+
+    </div><!-- end sus-quiz-layout -->
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">The <span class="accent">Awake</span> Club</a>
+        <p class="footer-tagline">Every Day Forward</p>
+        <p>A discipline-first lifestyle movement for people who are done drifting and ready to build every day forward.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="start-here.html">Start Here</a></li>
+          <li><a href="find-your-4am.html">Find Your 4AM</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="playlists.html">Playlists</a></li>
+          <li><a href="daily-growth.html">Daily Growth</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <ul>
+          <li><a href="find-your-4am.html#quiz">4AM Quiz</a></li>
+          <li><a href="show-up-structure.html">Show-Up Structure Quiz</a></li>
+          <li><a href="tools.html#gym-timer">Gym Focus Timer</a></li>
+          <li><a href="playlists.html">No-Drift Sound Library</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Core Beliefs</h4>
+        <ul>
+          <li><a href="start-here.html">Act, Don't React.</a></li>
+          <li><a href="start-here.html">The Habit Before the Intensity.</a></li>
+          <li><a href="start-here.html">Every Day Forward.</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-disclaimer">
+        The Awake Club is an independent personal development project. Content is shared for informational and motivational purposes only and is not medical advice, fitness instruction, financial guidance, or professional coaching. Consult qualified professionals before beginning any new training program or making health-related decisions.
+      </p>
+      <p class="footer-copy">© 2025 theawakeclub.com</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+/* ====================================================
+   FIND YOUR SHOW-UP STRUCTURE — self-contained quiz
+   ==================================================== */
+(function () {
+  'use strict';
+
+  var TRACK_PRIORITY = ['MIN','WLK','RET','FBS','FLX','SPL','PRO'];
+
+  var QUESTIONS = [
+    {
+      id: 'q1',
+      num: 1,
+      text: 'How many days a week can you realistically show up?',
+      answers: [
+        { label: '2 days',                     scores: { MIN:3, WLK:1 } },
+        { label: '3 days',                     scores: { FBS:3, RET:1 } },
+        { label: '4–5 days',              scores: { SPL:3, PRO:1 } },
+        { label: '6+ days',                    scores: { PRO:2, SPL:1 } },
+        { label: 'It varies week to week',     scores: { FLX:3 } }
+      ]
+    },
+    {
+      id: 'q2',
+      num: 2,
+      text: 'How long is a realistic session for you right now?',
+      answers: [
+        { label: '15–20 minutes',         scores: { MIN:3, WLK:1 } },
+        { label: '30 minutes',                 scores: { FBS:2, RET:2 } },
+        { label: '45–60 minutes',         scores: { SPL:3, PRO:1 } },
+        { label: 'More time than that',        scores: { SPL:2, PRO:2 } },
+        { label: 'It depends on the day',      scores: { FLX:3 } }
+      ]
+    },
+    {
+      id: 'q3',
+      num: 3,
+      text: 'Where will most of your training happen?',
+      answers: [
+        { label: 'Full gym',                          scores: { SPL:2, PRO:2 } },
+        { label: 'Home, minimal equipment',           scores: { FBS:2, MIN:1 } },
+        { label: 'Home, no equipment',                scores: { MIN:2, WLK:1 } },
+        { label: 'Outdoors / walking-based',          scores: { WLK:3 } },
+        { label: 'Mixed — wherever I am that day', scores: { FLX:3 } }
+      ]
+    },
+    {
+      id: 'q4',
+      num: 4,
+      store: 'biggestFriction',
+      text: 'What gets in the way most often?',
+      answers: [
+        { label: "I don’t know what to do when I get there",  scores: { FBS:2, MIN:2 } },
+        { label: 'My phone pulls my attention before or during',   scores: { PRO:3 } },
+        { label: 'I lose the habit within a week or two',          scores: { MIN:2, RET:1 } },
+        { label: "I don’t have the energy to start",          scores: { MIN:3 } },
+        { label: 'I overcommit and burn out fast',                 scores: { RET:2, MIN:1 } }
+      ]
+    },
+    {
+      id: 'q5',
+      num: 5,
+      text: 'Where are you with structured training right now?',
+      answers: [
+        { label: 'New to this — starting from honest zero',              scores: { MIN:3 } },
+        { label: 'Returning after a long break',                             scores: { RET:3 } },
+        { label: "Inconsistent — I’ve done it before, on and off", scores: { FBS:2, RET:1 } },
+        { label: 'Consistent already — I want to protect what I have',  scores: { PRO:3 } },
+        { label: 'Experienced, just want a simple wrapper around it',        scores: { PRO:2, SPL:1 } }
+      ]
+    },
+    {
+      id: 'q6',
+      num: 6,
+      text: 'What feels more sustainable to you?',
+      answers: [
+        { label: 'Same simple session, repeated',                      scores: { FBS:3, MIN:1 } },
+        { label: 'Some variety, but still simple',                     scores: { FBS:2, FLX:1 } },
+        { label: 'A clear weekly split — different focus each day', scores: { SPL:3 } },
+        { label: 'Mostly walking/cardio-based movement',               scores: { WLK:3 } },
+        { label: "I’m not sure — tell me what’s simplest", scores: { MIN:2, FBS:1 } }
+      ]
+    },
+    {
+      id: 'q7',
+      num: 7,
+      store: 'primaryNeed',
+      text: 'If this only fixed one thing, what should it fix?',
+      answers: [
+        { label: 'Helping me know what to do without thinking',        scores: { FBS:3, MIN:1 } },
+        { label: 'Helping me stop getting distracted mid-session',     scores: { PRO:3 } },
+        { label: 'Helping me actually show up consistently',           scores: { MIN:2, RET:2 } },
+        { label: 'Helping me ease back in without overdoing it',       scores: { RET:3 } },
+        { label: 'Helping me protect a routine I already have',        scores: { PRO:3 } }
+      ]
+    },
+    {
+      id: 'q8',
+      num: 8,
+      text: 'Which sounds most like you?',
+      answers: [
+        { label: 'I do better with a fixed schedule',                             scores: { SPL:2, FBS:1 } },
+        { label: 'I do better with flexible “any day works” structure', scores: { FLX:3 } },
+        { label: "I need the bar low enough that I can’t talk myself out of it", scores: { MIN:3 } },
+        { label: 'I want structure but with room to adjust',                      scores: { FLX:2, RET:1 } },
+        { label: 'I want the simplest possible version, no decisions',            scores: { MIN:2, FBS:2 } }
+      ]
+    }
+  ];
+
+  var RESULTS = {
+    MIN: {
+      title:            'The Minimum Viable Track',
+      identity:         "You don’t need more structure. You need a floor low enough that you actually use it.",
+      who:              'High friction, low energy, honest beginners, or anyone where the real risk is not starting at all.',
+      stats:            { days: '2 days', session: '15–20 min', setting: 'Any setting' },
+      frictionExplanation: 'This track lowers the bar on purpose. The goal is not to prove intensity. The goal is to remove the first excuse and create a repeatable floor.',
+      wrapper: {
+        claim:   'Get dressed. That is the whole Claim.',
+        prime:   'Move for 5 minutes. Walk, stretch, or start with the easiest movement available.',
+        build:   'Do one simple movement block for 10–15 minutes. Keep the effort comfortable and controlled.',
+        reflect: 'Did you show up? That is the only question that matters this week.'
+      },
+      soundCTA: 'Open Deep Focus Sounds',            soundLink: 'playlists.html',
+      timerCTA: 'Use a Simple 60-Second Rest Cue',  timerLink: 'tools.html',
+      manualName: 'Dress Up. Show Up.',
+      manualCTA: 'Open the Starter Manual',          manualLink: 'start-here.html',
+      focusCue: 'One Step Still Counts.'
+    },
+    RET: {
+      title:            'The Return Track',
+      identity:         "You’re not starting over. You’re picking back up.",
+      who:              'Returning after a break, rebuilding momentum, or prone to overcommitting and burning out fast.',
+      stats:            { days: '3 days', session: '30 min', setting: 'Gym or home' },
+      frictionExplanation: 'This track protects you from the classic comeback mistake: trying to punish the past instead of rebuilding the rhythm.',
+      wrapper: {
+        claim:   'Decide the night before. No morning negotiating.',
+        prime:   'Start easier than you think you need. The first five minutes should feel almost too easy.',
+        build:   'Complete one simple session. Resist the urge to make up for lost time.',
+        reflect: 'What felt sustainable? Keep that. Drop what did not.'
+      },
+      soundCTA: 'Open Cooldown Reset Sounds',        soundLink: 'playlists.html',
+      timerCTA: 'Use Timer for Controlled Rest',     timerLink: 'tools.html',
+      manualName: 'The 7-Day Every Day Forward Starter Plan',
+      manualCTA: 'Open the 7-Day Starter Plan',      manualLink: 'start-here.html',
+      focusCue: 'The Habit Before the Intensity.'
+    },
+    FBS: {
+      title:            'The Full-Body Simple Track',
+      identity:         'One session. Repeated. No decisions required.',
+      who:              'People who want zero thinking involved: same structure, same rhythm, same repeatable week.',
+      stats:            { days: '3 days', session: '30–45 min', setting: 'Gym or simple setup' },
+      frictionExplanation: 'This track solves the “I don’t know what to do when I get there” problem by removing variety as the first priority. Familiarity is the point.',
+      wrapper: {
+        claim:   'Same time, same days. Let the schedule become the decision-maker.',
+        prime:   'Use the same opening routine every session. Familiarity lowers resistance.',
+        build:   'Use the same broad full-body structure each time: push, pull, legs, movement. Keep it controlled.',
+        reflect: 'Did the repetition feel easier this week? That is the signal the structure is working.'
+      },
+      soundCTA: 'Open Heavy Lift Sounds',            soundLink: 'playlists.html',
+      timerCTA: 'Use Fixed Rest Intervals',          timerLink: 'tools.html',
+      manualName: 'Put Your Mind Where Your Weight Is',
+      manualCTA: 'Open the Focus Manual',            manualLink: 'start-here.html',
+      focusCue: 'Put Your Mind Where Your Weight Is.'
+    },
+    SPL: {
+      title:            'The Split Structure Track',
+      identity:         'You have the time and the consistency. Now give the week some shape.',
+      who:              'People with 4–5+ available days, more training experience, and a desire for a fixed weekly structure.',
+      stats:            { days: '4–5 days', session: '45–60 min', setting: 'Full gym' },
+      frictionExplanation: 'This track is for people who already have enough consistency to handle more weekly shape. The goal is structure, not complexity.',
+      wrapper: {
+        claim:   'Know which day is up before you walk in.',
+        prime:   "Warm up toward the day’s general focus. Do not wander into random work.",
+        build:   "Stay inside the day’s lane. Full attention, no drifting between areas.",
+        reflect: 'Which day felt strongest this week? Which day needs protecting next week?'
+      },
+      soundCTA: 'Open Techno Flow Sounds',           soundLink: 'playlists.html',
+      timerCTA: 'Use Timer to Protect Rest',         timerLink: 'tools.html',
+      manualName: 'Click. Lift. Don’t Drift.',
+      manualCTA: 'Open the No-Drift Manual',         manualLink: 'start-here.html',
+      focusCue: 'Click. Lift. Don’t Drift.'
+    },
+    WLK: {
+      title:            'The Walking/Cardio Track',
+      identity:         'Movement does not need a gym membership. It needs a habit.',
+      who:              'Outdoor preference, walking-based movement, minimal equipment, cardio-first users, or anyone who needs a low-friction entry point.',
+      stats:            { days: 'Flexible', session: '20–40 min', setting: 'Outdoor / cardio' },
+      frictionExplanation: 'This track removes the equipment problem. Your win condition is claiming the movement window before the day takes it from you.',
+      wrapper: {
+        claim:   'Pick the window before the day fills up around you.',
+        prime:   'Just start moving. The warm-up is the first five minutes.',
+        build:   'Keep moving for the time you set. Pace is yours to choose.',
+        reflect: 'Did you claim the window, or did the day take it first?'
+      },
+      soundCTA: 'Open Cardio Pulse Sounds',          soundLink: 'playlists.html',
+      timerCTA: 'Use Timer for Pace Blocks',         timerLink: 'tools.html',
+      manualName: 'The 7-Day Every Day Forward Starter Plan',
+      manualCTA: 'Open the 7-Day Starter Plan',      manualLink: 'start-here.html',
+      focusCue: 'Act, Don’t React.'
+    },
+    PRO: {
+      title:            'The Protect-What-You-Have Track',
+      identity:         'You do not need a new routine. You need to protect the one you already built.',
+      who:              'Already consistent users whose main problem is phone drift, attention drift, or losing focus inside the session.',
+      stats:            { days: 'Your current routine', session: 'Your current window', setting: 'Where you already train' },
+      frictionExplanation: 'This track protects the routine you already built. The problem is not access or motivation. The problem is attention leakage.',
+      wrapper: {
+        claim:   'Phone down before the first set, every time, no exceptions.',
+        prime:   'Use the warm-up you already trust. The wrapper does not need to change your routine.',
+        build:   'Stay inside every set. Use the 3-point check: target, tempo, finish.',
+        reflect: 'Where did your attention leave the session today?'
+      },
+      soundCTA: 'Open Deep Focus Sounds',            soundLink: 'playlists.html',
+      timerCTA: 'Launch the No-Drift Timer',         timerLink: 'tools.html',
+      manualName: 'Click. Lift. Don’t Drift.',
+      manualCTA: 'Open the No-Drift Manual',         manualLink: 'start-here.html',
+      focusCue: 'Click. Lift. Don’t Drift.'
+    },
+    FLX: {
+      title:            'The Flexible Show-Up Track',
+      identity:         'Your schedule does not repeat. Your structure should not depend on it repeating.',
+      who:              'Variable schedules, travel, shifting workdays, parents, busy weeks, or anyone whose available time changes day to day.',
+      stats:            { days: 'Flexible', session: '10 / 20 / full', setting: 'Mixed' },
+      frictionExplanation: 'This track turns adjustment into the win. You do not fail because the day changed. You choose the version that fits the day.',
+      wrapper: {
+        claim:   'Decide what kind of day it is: short window, medium window, or full window.',
+        prime:   'Scale the warm-up to the time you actually have.',
+        build:   'Pick the matching session size. Do not force a long session into a short day.',
+        reflect: 'Did you adjust the size, or did you skip entirely? Adjusting is the win.'
+      },
+      soundCTA: 'Open Cooldown Reset Sounds',        soundLink: 'playlists.html',
+      timerCTA: 'Use Timer for Any Window',          timerLink: 'tools.html',
+      manualName: 'The Awake Daily System',
+      manualCTA: 'Open the Daily System',            manualLink: 'start-here.html',
+      focusCue: 'One Step Still Counts.'
+    }
+  };
+
+  /* ---- State ---- */
+  var selectedAnswers = {};
+  var stored          = {};
+  var currentQ        = 0;
+  var TOTAL           = QUESTIONS.length;
+
+  var questionsEl  = document.getElementById('sus-questions');
+  var resultEl     = document.getElementById('sus-result');
+  var progressFill = document.getElementById('sus-progress-fill');
+  var progressText = document.getElementById('sus-progress-text');
+
+  if (!questionsEl) return;
+
+  /* ---- Render question ---- */
+  function renderQuestion(idx) {
+    var q       = QUESTIONS[idx];
+    var isFirst = idx === 0;
+    var isLast  = idx === TOTAL - 1;
+
+    var optionsHTML = q.answers.map(function (a, i) {
+      var sel = selectedAnswers[q.id] === a.label;
+      return '<label class="quiz-option' + (sel ? ' selected' : '') + '" data-aidx="' + i + '">' +
+        '<input type="radio" name="' + q.id + '" value="' + i + '"' + (sel ? ' checked' : '') + '>' +
+        '<span>' + esc(a.label) + '</span>' +
+        '</label>';
+    }).join('');
+
+    questionsEl.innerHTML =
+      '<div class="quiz-question active" id="sus-qblock">' +
+        '<p class="quiz-q-text"><span class="quiz-q-num">Q' + q.num + '</span>' + esc(q.text) + '</p>' +
+        '<div class="quiz-options" role="radiogroup" aria-label="Question ' + q.num + ' options">' +
+          optionsHTML +
+        '</div>' +
+        '<div class="quiz-nav">' +
+          (isFirst ? '' : '<button type="button" id="sus-back" class="quiz-nav-back">← Back</button>') +
+          (isLast
+            ? '<button type="button" id="sus-submit" class="quiz-nav-next">See My Structure →</button>'
+            : '<button type="button" id="sus-next" class="quiz-nav-next">Next →</button>') +
+        '</div>' +
+      '</div>';
+
+    updateProgress(idx);
+
+    /* Attach listeners for this render */
+    questionsEl.querySelectorAll('.quiz-option').forEach(function (opt) {
+      opt.addEventListener('click', function () {
+        var aidx   = parseInt(opt.dataset.aidx, 10);
+        var answer = QUESTIONS[currentQ].answers[aidx];
+        selectedAnswers[QUESTIONS[currentQ].id] = answer.label;
+        if (QUESTIONS[currentQ].store) stored[QUESTIONS[currentQ].store] = answer.label;
+        questionsEl.querySelectorAll('.quiz-option').forEach(function (o) { o.classList.remove('selected'); });
+        opt.classList.add('selected');
+        var radio = opt.querySelector('input[type="radio"]');
+        if (radio) radio.checked = true;
+      });
+    });
+
+    var backBtn = document.getElementById('sus-back');
+    if (backBtn) {
+      backBtn.addEventListener('click', function () {
+        if (currentQ > 0) { currentQ--; renderQuestion(currentQ); }
+      });
+    }
+
+    var nextBtn = document.getElementById('sus-next');
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        if (!selectedAnswers[QUESTIONS[currentQ].id]) { flashQuestion(); return; }
+        currentQ++;
+        renderQuestion(currentQ);
+        scrollToQuiz();
+      });
+    }
+
+    var submitBtn = document.getElementById('sus-submit');
+    if (submitBtn) {
+      submitBtn.addEventListener('click', function () {
+        if (!selectedAnswers[QUESTIONS[currentQ].id]) { flashQuestion(); return; }
+        showResult();
+      });
+    }
+  }
+
+  function updateProgress(idx) {
+    var pct = Math.round((idx / TOTAL) * 100);
+    if (progressFill) { progressFill.style.width = pct + '%'; progressFill.parentElement.setAttribute('aria-valuenow', pct); }
+    if (progressText) progressText.textContent = (idx + 1) + ' of ' + TOTAL;
+  }
+
+  function flashQuestion() {
+    var qEl = document.getElementById('sus-qblock');
+    if (!qEl) return;
+    qEl.style.borderColor = 'var(--orange)';
+    setTimeout(function () { qEl.style.borderColor = ''; }, 1200);
+  }
+
+  function scrollToQuiz() {
+    if (window.innerWidth <= 768) {
+      var sec = document.getElementById('sus-quiz');
+      if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  /* ---- Scoring ---- */
+  function calcScores() {
+    var s = { MIN:0, RET:0, FBS:0, SPL:0, WLK:0, PRO:0, FLX:0 };
+    QUESTIONS.forEach(function (q) {
+      var label = selectedAnswers[q.id];
+      if (!label) return;
+      for (var i = 0; i < q.answers.length; i++) {
+        if (q.answers[i].label === label) {
+          var sc = q.answers[i].scores;
+          Object.keys(sc).forEach(function (t) { s[t] += sc[t]; });
+          break;
+        }
+      }
+    });
+    return s;
+  }
+
+  /* ---- Track selection with tie-break rules ---- */
+  function selectTrack(s) {
+    var q1  = selectedAnswers['q1'] || '';
+    var q2  = selectedAnswers['q2'] || '';
+    var q4  = stored['biggestFriction'] || '';
+    var q5  = selectedAnswers['q5'] || '';
+    var q7  = stored['primaryNeed']    || '';
+    var q8  = selectedAnswers['q8']    || '';
+
+    var maxScore = 0;
+    TRACK_PRIORITY.forEach(function (t) { if (s[t] > maxScore) maxScore = s[t]; });
+
+    /* Rule 4 — MIN hard floor */
+    var minQ4 = ['I lose the habit within a week or two', "I don’t have the energy to start", 'I overcommit and burn out fast'];
+    var minQ7 = ['Helping me actually show up consistently'];
+    var minQ8 = ["I need the bar low enough that I can’t talk myself out of it", 'I want the simplest possible version, no decisions'];
+    var minTriggered = minQ4.indexOf(q4) !== -1 || minQ7.indexOf(q7) !== -1 || minQ8.indexOf(q8) !== -1;
+    if (minTriggered && s['MIN'] >= maxScore - 2) return 'MIN';
+
+    /* Rule 3 — FLX override for variable schedule */
+    var flexSched = q1 === 'It varies week to week' || q2 === 'It depends on the day';
+    if (flexSched && s['FLX'] >= maxScore - 2) return 'FLX';
+
+    /* Rule 2 — PRO protection */
+    var proAllowed =
+      q4 === 'My phone pulls my attention before or during' ||
+      q5 === 'Consistent already — I want to protect what I have' ||
+      q5 === 'Experienced, just want a simple wrapper around it' ||
+      q7 === 'Helping me stop getting distracted mid-session' ||
+      q7 === 'Helping me protect a routine I already have';
+
+    /* Rule 1 — lowest-commitment tie-break within 1 point */
+    for (var i = 0; i < TRACK_PRIORITY.length; i++) {
+      var t = TRACK_PRIORITY[i];
+      if (t === 'PRO' && !proAllowed) continue;
+      if (s[t] >= maxScore - 1) return t;
+    }
+
+    /* Fallback: highest score excluding PRO if not allowed */
+    var best = null, bestScore = -1;
+    TRACK_PRIORITY.forEach(function (t) {
+      if (t === 'PRO' && !proAllowed) return;
+      if (s[t] > bestScore) { bestScore = s[t]; best = t; }
+    });
+    return best || 'MIN';
+  }
+
+  /* ---- Build result HTML ---- */
+  function showResult() {
+    var scores   = calcScores();
+    var trackKey = selectTrack(scores);
+    var r        = RESULTS[trackKey];
+    var friction = stored['biggestFriction'] || '';
+
+    if (progressFill) { progressFill.style.width = '100%'; progressFill.parentElement.setAttribute('aria-valuenow', 100); }
+    if (progressText) progressText.textContent = 'Done';
+
+    questionsEl.style.display = 'none';
+
+    resultEl.innerHTML =
+      '<div class="sus-result-card">' +
+
+        /* Badge + title + identity */
+        '<p class="sus-result-badge">YOUR STRUCTURE</p>' +
+        '<h2 class="sus-result-title">' + esc(r.title) + '</h2>' +
+        '<p class="sus-result-identity">' + esc(r.identity) + '</p>' +
+
+        /* Stats row */
+        '<div class="sus-stats-row" aria-label="Structure summary">' +
+          '<div class="sus-stat-cell"><span class="sus-stat-label">Days</span><span class="sus-stat-val">' + esc(r.stats.days) + '</span></div>' +
+          '<div class="sus-stat-cell"><span class="sus-stat-label">Session</span><span class="sus-stat-val">' + esc(r.stats.session) + '</span></div>' +
+          '<div class="sus-stat-cell"><span class="sus-stat-label">Setting</span><span class="sus-stat-val">' + esc(r.stats.setting) + '</span></div>' +
+        '</div>' +
+
+        /* Friction box */
+        '<div class="sus-friction-box">' +
+          '<p class="sus-friction-label">Your friction point</p>' +
+          (friction ? '<p class="sus-friction-quote">' + esc(friction) + '</p>' : '') +
+          '<p class="sus-friction-body">' + esc(r.frictionExplanation) + '</p>' +
+        '</div>' +
+
+        /* Session wrapper */
+        '<div class="sus-wrapper-section">' +
+          '<p class="sus-sub-label">Session Wrapper</p>' +
+          '<div class="sus-wrapper-grid">' +
+            '<div class="sus-wrapper-cell"><span class="sus-wrapper-step">Claim</span><p class="sus-wrapper-text">' + esc(r.wrapper.claim) + '</p></div>' +
+            '<div class="sus-wrapper-cell"><span class="sus-wrapper-step">Prime</span><p class="sus-wrapper-text">' + esc(r.wrapper.prime) + '</p></div>' +
+            '<div class="sus-wrapper-cell"><span class="sus-wrapper-step">Build</span><p class="sus-wrapper-text">' + esc(r.wrapper.build) + '</p></div>' +
+            '<div class="sus-wrapper-cell"><span class="sus-wrapper-step">Reflect</span><p class="sus-wrapper-text">' + esc(r.wrapper.reflect) + '</p></div>' +
+          '</div>' +
+        '</div>' +
+
+        /* Focus cue */
+        '<p class="sus-focus-cue" aria-label="Focus cue">' + esc(r.focusCue) + '</p>' +
+
+        /* Action cards */
+        '<div class="sus-action-cards">' +
+          '<a href="' + esc(r.timerLink) + '" class="sus-action-card">' +
+            '<p class="sus-action-label">Gym Focus Timer</p>' +
+            '<p class="sus-action-body">' + esc(r.timerCTA) + '</p>' +
+            '<span class="sus-action-cta">Open Timer →</span>' +
+          '</a>' +
+          '<a href="' + esc(r.soundLink) + '" class="sus-action-card">' +
+            '<p class="sus-action-label">No-Drift Sound Library</p>' +
+            '<p class="sus-action-body">' + esc(r.soundCTA) + '</p>' +
+            '<span class="sus-action-cta">Open Playlists →</span>' +
+          '</a>' +
+          '<a href="' + esc(r.manualLink) + '" class="sus-action-card">' +
+            '<p class="sus-action-label">Recommended Manual</p>' +
+            '<p class="sus-action-body">' + esc(r.manualName) + '</p>' +
+            '<span class="sus-action-cta">' + esc(r.manualCTA) + ' →</span>' +
+          '</a>' +
+        '</div>' +
+
+        /* Email CTA */
+        '<div class="sus-email-cta">' +
+          '<p class="sus-email-hed">Get Your Structure as a Printable Sheet</p>' +
+          '<p class="sus-email-body">Drop your email and we’ll send your matched track as a one-page reference, plus the manual that fits your biggest friction point.</p>' +
+          '<form class="email-form sus-email-form" action="#" method="post" data-form-id="show-up-structure" aria-label="Get your structure sheet" style="max-width:460px;margin:24px auto 10px;">' +
+            '<input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">' +
+            '<button type="submit">Send My Structure →</button>' +
+          '</form>' +
+          '<p class="email-fine">No spam. No fluff. Unsubscribe anytime.</p>' +
+        '</div>' +
+
+        /* Full disclaimer */
+        '<div class="sus-disclaimer">' +
+          '<p>This tool suggests a general training structure based on your stated schedule, setting, and preferences. It is not personalized fitness instruction, medical advice, or a substitute for guidance from a qualified fitness professional or healthcare provider. It does not account for injuries, medical conditions, or physical limitations. Stop any activity that causes pain, dizziness, shortness of breath, or unusual discomfort. Consult a qualified professional before beginning any new training routine, especially if you have pre-existing health conditions.</p>' +
+        '</div>' +
+
+        /* Retake */
+        '<div style="text-align:center;padding-top:28px;">' +
+          '<button type="button" class="quiz-nav-back" id="sus-retake" style="display:inline-block;">← Retake Quiz</button>' +
+        '</div>' +
+
+      '</div>';
+
+    resultEl.style.display = 'block';
+    resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    /* Email handler for dynamically rendered form */
+    var emailForm = resultEl.querySelector('.sus-email-form');
+    if (emailForm) {
+      emailForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var input = emailForm.querySelector('input[type="email"]');
+        var btn   = emailForm.querySelector('button[type="submit"]');
+        if (!input || !input.value.trim()) return;
+        btn.textContent = 'You’re on the list ✓';
+        btn.classList.add('sent');
+        btn.disabled  = true;
+        input.value   = '';
+        input.disabled = true;
+      });
+    }
+
+    /* Retake handler */
+    var retakeBtn = document.getElementById('sus-retake');
+    if (retakeBtn) {
+      retakeBtn.addEventListener('click', function () {
+        selectedAnswers = {};
+        stored = {};
+        currentQ = 0;
+        resultEl.style.display  = 'none';
+        resultEl.innerHTML      = '';
+        questionsEl.style.display = '';
+        renderQuestion(0);
+        var sec = document.getElementById('sus-quiz');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  }
+
+  function esc(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  /* Init */
+  renderQuestion(0);
+
+}());
+</script>
+
+</body>
+</html>

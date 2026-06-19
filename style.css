@@ -860,3 +860,184 @@ article.article-card { cursor: default; }
   .pl-how-item { padding: 16px 20px; gap: 16px; }
   .pl-how-num { font-size: 1.6rem; width: 32px; }
 }
+
+/* ============================================
+   SHOW-UP STRUCTURE QUIZ — v1.0
+   ============================================ */
+
+/* Option text */
+.quiz-option span {
+  font-size: 0.88rem; color: var(--silver);
+  line-height: 1.5; flex: 1;
+}
+.quiz-option.selected span { color: var(--white); }
+
+/* Two-column quiz layout */
+.sus-quiz-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* Result card */
+.sus-result-card {
+  background: var(--charcoal); border: 1px solid var(--orange-border);
+  padding: 40px 36px; margin-top: 8px;
+}
+
+.sus-result-badge {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--orange); margin-bottom: 12px;
+}
+
+.sus-result-title {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3.2rem); text-transform: uppercase;
+  color: var(--white); line-height: 0.95; margin-bottom: 16px;
+}
+
+.sus-result-identity {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--orange); line-height: 1.35; margin-bottom: 28px;
+}
+
+/* Stats row */
+.sus-stats-row {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+  margin-bottom: 28px;
+}
+.sus-stat-cell {
+  background: var(--dark); padding: 20px 16px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.sus-stat-label {
+  font-size: 0.64rem; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--muted);
+}
+.sus-stat-val {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--white);
+}
+
+/* Friction box */
+.sus-friction-box {
+  background: var(--dark); border: 1px solid var(--rule);
+  border-left: 3px solid var(--orange); padding: 24px 20px;
+  margin-bottom: 28px;
+}
+.sus-friction-label {
+  font-size: 0.64rem; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--orange); margin-bottom: 8px;
+}
+.sus-friction-quote {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--white); margin-bottom: 10px;
+}
+.sus-friction-body {
+  font-size: 0.88rem; font-weight: 300; color: var(--steel); line-height: 1.75;
+}
+
+/* Session wrapper */
+.sus-wrapper-section { margin-bottom: 32px; }
+.sus-sub-label {
+  font-size: 0.64rem; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+}
+.sus-wrapper-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+}
+.sus-wrapper-cell { background: var(--dark); padding: 20px 16px; }
+.sus-wrapper-step {
+  display: block;
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--orange); margin-bottom: 8px;
+}
+.sus-wrapper-text {
+  font-size: 0.82rem; font-weight: 300; color: var(--muted); line-height: 1.65;
+}
+
+/* Focus cue */
+.sus-focus-cue {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 3rem); text-transform: uppercase;
+  letter-spacing: 0.03em; color: var(--orange); text-align: center;
+  padding: 32px 0; line-height: 1;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  margin-bottom: 32px;
+}
+
+/* Action cards */
+.sus-action-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+  margin-bottom: 32px;
+}
+.sus-action-card {
+  background: var(--charcoal); padding: 24px 20px;
+  display: flex; flex-direction: column; gap: 8px;
+  text-decoration: none; color: inherit; transition: background 0.2s;
+}
+.sus-action-card:hover { background: var(--dark); }
+.sus-action-label {
+  font-size: 0.64rem; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--muted);
+}
+.sus-action-body {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--white); line-height: 1.2; flex: 1;
+}
+.sus-action-cta {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--orange);
+}
+
+/* Email CTA */
+.sus-email-cta {
+  background: var(--dark); border: 1px solid var(--rule);
+  padding: 32px 28px; margin-bottom: 28px; text-align: center;
+}
+.sus-email-hed {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--white); margin-bottom: 10px;
+}
+.sus-email-body {
+  font-size: 0.88rem; font-weight: 300; color: var(--steel); line-height: 1.75;
+}
+
+/* Disclaimer */
+.sus-disclaimer {
+  border-top: 1px solid var(--rule); padding-top: 20px; margin-top: 8px;
+}
+.sus-disclaimer p {
+  font-size: 0.73rem; color: var(--muted); line-height: 1.7;
+}
+
+/* SUS responsive — 1024px */
+@media (max-width: 1024px) {
+  .sus-quiz-layout { grid-template-columns: 1fr 1.6fr; gap: 48px; }
+  .sus-wrapper-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* SUS responsive — 768px */
+@media (max-width: 768px) {
+  .sus-quiz-layout { grid-template-columns: 1fr; gap: 40px; }
+  .sus-result-card { padding: 24px 18px; }
+  .sus-wrapper-grid { grid-template-columns: repeat(2, 1fr); }
+  .sus-action-cards { grid-template-columns: 1fr; }
+  .sus-focus-cue { font-size: clamp(1.4rem, 7vw, 2rem); }
+}
+
+/* SUS responsive — 480px */
+@media (max-width: 480px) {
+  .sus-stats-row { grid-template-columns: 1fr; }
+  .sus-wrapper-grid { grid-template-columns: 1fr; }
+}
