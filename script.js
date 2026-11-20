@@ -122,36 +122,8 @@
          body: JSON.stringify({ api_key: 'YOUR_KEY', email: emailVal, tags: [formId] })
        });
      ============================================================ */
-  document.querySelectorAll('.email-form').forEach(function (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var input  = form.querySelector('input[type="email"]');
-      var btn    = form.querySelector('button[type="submit"]');
-      var formId = form.dataset.formId || 'general';
-      if (!input || !input.value.trim()) return;
-
-      /* ---- EMAIL PROVIDER INTEGRATION POINT ----
-      fetch('https://YOUR_PROVIDER_ENDPOINT', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: input.value.trim(), form: formId })
-      })
-      .then(function() { showSuccess(); })
-      .catch(function() { btn.textContent = 'Try Again'; });
-      ---- END INTEGRATION POINT ---- */
-
-      // Temporary success state until provider is connected
-      showSuccess();
-
-      function showSuccess() {
-        btn.textContent = 'You\'re on the list ✓';
-        btn.classList.add('sent');
-        btn.disabled = true;
-        input.value = '';
-        input.disabled = true;
-      }
-    });
-  });
+  // No newsletter provider is configured. Email forms were replaced with
+  // honest notices and instant downloads; there is no fake success handler.
 
   /* ============================================================
      QUIZ — V1.2
