@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>30-Day Discipline Challenge — The Awake Club | Every Day Forward</title>
+  <meta name="description" content="A free 30-day discipline challenge built around small actions, focus, and consistency. Track progress privately in your browser. No accounts or early alarms required.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://theawakeclub.com/challenge.html">
+  <meta name="theme-color" content="#111111">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="The Awake Club">
+  <meta property="og:url" content="https://theawakeclub.com/challenge.html">
+  <meta property="og:title" content="30 Days. One Step Forward. | The Awake Club">
+  <meta property="og:description" content="Free discipline challenge. One small daily action, private progress tracking, and a real reason to show up.">
+  <meta property="og:image" content="https://theawakeclub.com/assets/images/gym-real.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="site-nav" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo">The <span class="accent">Awake</span> Club</a>
+  <ul class="nav-links" role="list">
+    <li><a href="start-here.html">Start Here</a></li>
+    <li><a href="find-your-4am.html">Find Your 4AM</a></li>
+    <li><a href="challenge.html">30-Day Challenge</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="playlists.html">Playlists</a></li>
+    <li><a href="daily-growth.html">Daily Growth</a></li>
+    <li><a href="#community" class="nav-cta">Join</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" aria-label="Mobile navigation">
+  <a href="start-here.html">Start Here</a>
+  <a href="find-your-4am.html">Find Your 4AM</a>
+  <a href="challenge.html">30-Day Challenge</a>
+  <a href="tools.html">Tools</a>
+  <a href="playlists.html">Playlists</a>
+  <a href="daily-growth.html">Daily Growth</a>
+  <a href="#community">Join</a>
+</nav>
+<main id="main-content">
+  <section class="challenge-hero">
+    <div class="container">
+      <p class="challenge-kicker">THE AWAKE CLUB / FREE DAILY SYSTEM</p>
+      <h1 class="challenge-title">30 DAYS.<br><span>ONE STEP FORWARD.</span></h1>
+      <p class="challenge-lead">You don't need a 4AM alarm. You need one intentional action you can repeat. Start small, check in, and build proof that you can show up for yourself.</p>
+      <div class="challenge-hero-actions">
+        <a href="#challenge-dashboard" class="btn btn-primary">Start Your Challenge</a>
+        <a href="tools.html" class="btn btn-ghost">Explore Free Tools</a>
+      </div>
+      <p class="challenge-privacy">No account. No subscription. Your progress is saved only in this browser.</p>
+    </div>
+  </section>
+
+  <section class="challenge-main section-pad" id="challenge-dashboard">
+    <div class="container">
+      <div class="challenge-section-head">
+        <div>
+          <p class="section-label">Your Personal Challenge</p>
+          <h2 class="display-md">Consistency, <span class="accent-orange">not perfection.</span></h2>
+          <p>Pick your start date today. You can reflect on earlier days or catch up without losing your progress. No punishment for missing a day.</p>
+        </div>
+      </div>
+      <div class="challenge-stats" aria-label="Your challenge progress">
+        <div class="challenge-stat"><strong id="stat-completed">0 / 30</strong><span>Days completed</span></div>
+        <div class="challenge-stat"><strong id="stat-day">Not started</strong><span>Your challenge day</span></div>
+        <div class="challenge-stat"><strong id="stat-streak">0</strong><span>Current daily streak</span></div>
+      </div>
+      <div class="challenge-progress-wrap">
+        <div class="challenge-progress-head"><span>Your progress</span><strong id="stat-percent">0%</strong></div>
+        <div class="challenge-progress" role="progressbar" aria-label="Challenge completion" aria-valuemin="0" aria-valuemax="30" aria-valuenow="0" id="progress-bar"><div id="progress-fill"></div></div>
+      </div>
+      <div class="challenge-intro" id="challenge-intro">
+        <h3>Ready to claim Day 1?</h3>
+        <p>One click starts your 30-day sequence. It doesn't require an account or an extreme schedule; actions are designed to be adaptable to your life.</p>
+        <button type="button" class="btn btn-primary" id="start-challenge">Start My 30 Days</button>
+      </div>
+
+      <div class="challenge-columns">
+        <div class="challenge-calendar">
+          <p class="section-label">Your 30-Day Roadmap</p>
+          <div class="challenge-weeks">
+            <div><b>WEEK 1</b><span>Show up</span></div>
+            <div><b>WEEK 2</b><span>Protect focus</span></div>
+            <div><b>WEEK 3</b><span>Build momentum</span></div>
+            <div><b>WEEK 4+</b><span>Make it yours</span></div>
+          </div>
+          <div id="challenge-grid" class="challenge-day-grid" role="group" aria-label="Days 1 through 30"></div>
+          <p class="challenge-small">Completed days show a checkmark. Upcoming days can be viewed, but not marked completed in advance.</p>
+        </div>
+        <aside class="challenge-day-detail" aria-labelledby="daily-task-heading">
+          <p class="section-label" id="selected-day">TODAY'S STEP</p>
+          <h3 tabindex="-1" id="daily-task-heading">Start your journey</h3>
+          <p id="daily-task-desc">Your first challenge is simple: make one small commitment to yourself.</p>
+          <div class="challenge-reflection">
+            <label for="day-note"><strong>Private reflection</strong><span id="daily-reflection-prompt">What would showing up look like today?</span></label>
+            <textarea id="day-note" rows="4" maxlength="1000" placeholder="A sentence is enough. Your notes never leave this browser."></textarea>
+            <div class="challenge-note-actions">
+              <button type="button" class="challenge-button-dark" id="save-note">Save reflection</button>
+              <span id="note-feedback" role="status" aria-live="polite"></span>
+            </div>
+          </div>
+          <button type="button" class="challenge-complete" id="mark-done" disabled>Start to check in</button>
+        </aside>
+      </div>
+
+      <div class="challenge-manage">
+        <div><h3>Own your progress.</h3><p>Export a local backup, or reset and start fresh. No login, no tracking pixels, no public leaderboard.</p></div>
+        <div class="challenge-manage-actions"><button type="button" id="export-progress">Download progress</button><button type="button" id="reset-progress">Reset challenge</button></div>
+      </div>
+    </div>
+  </section>
+  <section class="challenge-next section-pad">
+    <div class="container">
+      <p class="section-label">THE TOOLS ARE HERE</p>
+      <h2 class="display-md">Build a routine that works <span class="accent-orange">for your life.</span></h2>
+      <div class="challenge-next-grid">
+        <a href="find-your-4am.html#quiz"><b>Find Your Focus Window</b><span>Take the free quiz &rarr;</span></a>
+        <a href="tools.html#gym-timer"><b>Remove Gym Distractions</b><span>Try the focus timer &rarr;</span></a>
+        <a href="assets/downloads/7-day-every-day-forward-starter-plan.pdf" download><b>Start Smaller</b><span>Download the free 7-day plan &rarr;</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<style>
+  .challenge-hero{background:radial-gradient(ellipse at 80% 20%,#4b2715 0,transparent 48%),linear-gradient(135deg,#151515,#070707);padding:110px 0 100px;border-bottom:1px solid #46301f}
+  .challenge-kicker{font-size:.74rem;letter-spacing:.2em;color:#f2a45c;font-weight:800;margin-bottom:18px}
+  .challenge-title{font-family:var(--font-display,Arial,sans-serif);font-size:clamp(3.5rem,9vw,7rem);line-height:.99;font-weight:900;letter-spacing:-.06em;margin-bottom:26px;color:#fff}
+  .challenge-title span{color:#ec7f35}
+  .challenge-lead{font-size:clamp(1.05rem,2vw,1.24rem);max-width:690px;color:#d6d6d6;line-height:1.65}
+  .challenge-hero-actions{display:flex;flex-wrap:wrap;gap:13px;margin-top:30px}
+  .challenge-privacy{font-size:.8rem;color:#ababab;margin-top:20px}
+  .challenge-main{background:#121212}
+  .challenge-section-head{max-width:750px;margin-bottom:28px}
+  .challenge-section-head p:not(.section-label){color:#c4c4c4}
+  .challenge-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+  .challenge-stat{border:1px solid #343434;padding:22px;background:#1e1e1e;border-radius:10px;display:flex;flex-direction:column;gap:6px}
+  .challenge-stat strong{font-size:clamp(1.6rem,4vw,2.2rem);color:#fff;letter-spacing:-.035em;font-weight:850;font-variant-numeric:tabular-nums}
+  .challenge-stat span{color:#bdbdbd;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+  .challenge-progress-wrap{margin:20px 0 30px}
+  .challenge-progress-head{display:flex;justify-content:space-between;color:#ddd;margin-bottom:8px;font-size:.84rem}
+  .challenge-progress{height:10px;background:#333;border-radius:20px;overflow:hidden}
+  #progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#ed7332,#ffbc73);transition:width .25s ease}
+  .challenge-intro{border:1px solid #a65b28;padding:22px 26px;margin-bottom:25px;background:#272016;border-radius:10px}
+  .challenge-intro h3{margin:0 0 8px;color:#fff}
+  .challenge-intro p{color:#ddd;max-width:850px}
+  .challenge-columns{display:grid;grid-template-columns:1.23fr .77fr;align-items:start;gap:22px}
+  .challenge-calendar,.challenge-day-detail{background:#202020;border:1px solid #3d3d3d;border-radius:12px;padding:clamp(19px,3vw,29px)}
+  .challenge-weeks{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0 20px}
+  .challenge-weeks>div{padding:10px;background:#2d2d2d;border-radius:6px;display:flex;flex-direction:column;gap:2px}
+  .challenge-weeks b{font-size:.7rem;letter-spacing:.09em;color:#f4a363}
+  .challenge-weeks span{font-size:.74rem;color:#d1d1d1}
+  .challenge-day-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px}
+  .challenge-day{font:inherit;background:#2c2c2c;color:#eee;border:1px solid #505050;min-height:76px;padding:9px 5px;border-radius:8px;cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+  .challenge-day strong{font-size:1.16rem;line-height:1}
+  .challenge-day span{font-size:.63rem;text-transform:uppercase;letter-spacing:.05em}
+  .challenge-day[aria-pressed="true"]{outline:2px solid #f0a260;outline-offset:2px}
+  .challenge-day[data-done="true"]{background:#244034;border-color:#558e69;color:#e6ffee}
+  .challenge-day[data-locked="true"]{opacity:.55}
+  .challenge-day:focus-visible{outline:3px solid #ffc58d;outline-offset:2px}
+  .challenge-small{margin-top:16px;color:#acacac;font-size:.82rem}
+  .challenge-day-detail{border-color:#9f5d2e}
+  .challenge-day-detail h3{font-size:1.65rem;color:#fff;line-height:1.2;margin-bottom:11px}
+  #daily-task-desc{color:#dedede;line-height:1.65;margin:0 0 24px}
+  .challenge-reflection{padding:18px;background:#2a2a2a;border-radius:8px}
+  .challenge-reflection label{display:flex;flex-direction:column;gap:6px;margin-bottom:10px;color:#fff}
+  .challenge-reflection label span{color:#c5c5c5;font-size:.88rem;font-weight:400}
+  #day-note{display:block;width:100%;min-height:115px;resize:vertical;box-sizing:border-box;border-radius:7px;border:1px solid #777;padding:12px;font:inherit;color:#202020;background:#f5f5f5}
+  .challenge-note-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
+  .challenge-button-dark{font:inherit;background:#f5f5f5;color:#1d1d1d;border:0;border-radius:5px;padding:10px 14px;font-weight:750;cursor:pointer}
+  #note-feedback{font-size:.78rem;color:#eabf9a}
+  .challenge-complete{font:inherit;font-weight:850;background:#e67b35;color:#0e0e0e;padding:15px 22px;border:0;border-radius:7px;cursor:pointer;width:100%;margin-top:16px}
+  .challenge-complete:disabled{opacity:.48;cursor:not-allowed}
+  .challenge-manage{display:flex;justify-content:space-between;gap:22px;align-items:center;flex-wrap:wrap;padding:27px 0 0}
+  .challenge-manage h3{margin:0 0 4px;color:#fff}
+  .challenge-manage p{font-size:.86rem;color:#bdbdbd;margin:0}
+  .challenge-manage-actions{display:flex;gap:9px;flex-wrap:wrap}
+  .challenge-manage-actions button{font:inherit;cursor:pointer;font-weight:700;padding:11px 14px;background:#252525;color:#f5f5f5;border:1px solid #636363;border-radius:7px}
+  .challenge-manage-actions button:hover{background:#393939}
+  .challenge-next{background:#171717}
+  .challenge-next-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:25px}
+  .challenge-next-grid a{background:#292929;color:#fff;border:1px solid #444;padding:23px;border-radius:8px;display:flex;flex-direction:column;gap:11px;text-decoration:none}
+  .challenge-next-grid a:hover{border-color:#d87a38}
+  .challenge-next-grid b{font-size:1.1rem}
+  .challenge-next-grid span{font-size:.85rem;color:#ffa668}
+  @media(max-width:900px){.challenge-columns{grid-template-columns:1fr}.challenge-next-grid{grid-template-columns:1fr}}
+  @media(max-width:600px){.challenge-hero{padding:65px 0}.challenge-day-grid{grid-template-columns:repeat(5,minmax(0,1fr))}.challenge-weeks{grid-template-columns:repeat(2,1fr)}.challenge-stats{gap:8px}.challenge-stat{padding:12px}.challenge-stat strong{font-size:1.3rem}.challenge-stat span{font-size:.65rem}}
+  @media(prefers-reduced-motion:reduce){#progress-fill{transition:none}}
+</style>
+<script>
+(function(){
+  'use strict';
+  var key='theawakeclub.challenge.v1';
+  var tasks=[
+    ['Claim one small promise','Choose one worthwhile action that you can complete today, even on a difficult day.','What is your smallest sustainable promise?'],
+    ['Prepare your space','Make one environment change that makes tomorrow a little easier.','What did you remove or prepare?'],
+    ['Move intentionally','Choose movement that suits your body and energy today. Gentle counts.','How did movement affect your mood?'],
+    ['Choose your priority','Identify one meaningful task before opening your feeds.','What deserved your attention?'],
+    ['Pause the scroll','Notice one time you reach for distractions. Redirect for five minutes.','What pulled your attention?'],
+    ['Show up briefly','Spend ten focused minutes on something you have been avoiding.','What felt easier after starting?'],
+    ['Reflect and reset','Review the week. Keep the habit that worked; make the others smaller.','What is one win from this week?'],
+    ['Protect a focus block','Set aside one interruption-light work block of a duration you can manage.','What helped protect it?'],
+    ['Build a pre-start ritual','Pick a small cue that tells your brain it is time to begin.','What cue will you repeat?'],
+    ['Choose a helpful default','Make the helpful action easier than the distracting alternative.','Which friction did you remove?'],
+    ['Commit to the next rep','Return to something worth doing, without demanding perfection.','What did another attempt teach you?'],
+    ['Give yourself a buffer','Leave space between two obligations rather than rushing both.','What changed when you slowed down?'],
+    ['Finish one loose end','Close one small open loop that has occupied your mind.','What can you stop carrying now?'],
+    ['Notice your progress','Look for evidence of consistency, not just big results.','What quiet progress can you name?'],
+    ['Help your future self','Prepare a small thing today that tomorrow-you will appreciate.','What will make tomorrow easier?'],
+    ['Replace an excuse','When a reason to stop appears, find an honest smaller version of the task.','What smaller action still counted?'],
+    ['Reclaim ten minutes','Spend ten minutes on a skill, relationship, project, or healthful routine.','Where did you invest your time?'],
+    ['Practice full attention','Do one ordinary activity without simultaneously scrolling.','How did it feel to be present?'],
+    ['Identify an energy pattern','Notice when you feel focused and when you need rest.','What did your energy teach you?'],
+    ['Make your next action obvious','Write down the first tiny step for an unfinished goal.','What is the first move?'],
+    ['Celebrate showing up','Acknowledge effort without turning it into a competition.','What are you proud of this week?'],
+    ['Choose your non-negotiable','Pick a single realistic habit to keep when your schedule gets busy.','Why does this habit matter?'],
+    ['Learn from a miss','If you skipped a day, notice the obstacle and adjust rather than restart from zero.','What change would prevent the same obstacle?'],
+    ['Create a distraction boundary','Put one simple boundary around a device or habit for a chosen block.','What became easier?'],
+    ['Invest in a connection','Give someone your undivided attention for a few minutes.','What did you notice about the interaction?'],
+    ['Review what you control','Separate actions you can take today from outcomes you cannot force.','What is in your control?'],
+    ['Design your repeatable day','Build a flexible template with space for responsibilities and rest.','Which part can you realistically repeat?'],
+    ['Choose the next 30 days','Select one habit to continue beyond this challenge.','What will you keep?'],
+    ['Write your own principle','Put into words what Every Day Forward means to you.','What principle will guide your actions?'],
+    ['Finish with a new beginning','Review your thirty days, thank yourself for trying, and take one next step.','What will your next small action be?']
+  ];
+  var state={start:null,done:[],notes:{}};
+  try{var saved=JSON.parse(localStorage.getItem(key)||'null');if(saved&&typeof saved==='object'&&/^\d{4}-\d{2}-\d{2}$/.test(saved.start||'')){state.start=saved.start;state.done=Array.isArray(saved.done)?saved.done.filter(function(n){return Number.isInteger(n)&&n>=1&&n<=30;}):[];state.notes=(saved.notes&&typeof saved.notes==='object')?saved.notes:{};}}catch(e){}
+  var selected=1;
+  function dayISO(){var d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');}
+  function dayNum(){if(!state.start)return 0;var today=dayISO();var a=Date.parse(state.start+'T12:00:00Z');var b=Date.parse(today+'T12:00:00Z');return Math.max(1,Math.floor((b-a)/86400000)+1);}
+  function save(){try{localStorage.setItem(key,JSON.stringify(state));return true;}catch(e){document.getElementById('note-feedback').textContent='Browser storage unavailable. Export your progress instead.';return false;}}
+  function completed(n){return state.done.indexOf(n)!==-1;}
+  function streak(){if(!state.start)return 0;var n=Math.min(dayNum(),30);if(n>0&&!completed(n))n-=1;var count=0;while(n>0&&completed(n)){count++;n--;}return count;}
+  function text(id,value){document.getElementById(id).textContent=value;}
+  function render(){
+    var now=dayNum(),done=state.done.length,pct=Math.round(done/30*100);
+    text('stat-completed',done+' / 30');
+    text('stat-day',state.start?'Day '+Math.min(now,30):'Not started');
+    text('stat-streak',streak());
+    text('stat-percent',pct+'%');
+    document.getElementById('progress-fill').style.width=pct+'%';
+    document.getElementById('progress-bar').setAttribute('aria-valuenow',done);
+    document.getElementById('challenge-intro').hidden=!!state.start;
+    document.getElementById('challenge-grid').textContent='';
+    tasks.forEach(function(t,i){
+      var n=i+1,btn=document.createElement('button');btn.type='button';btn.className='challenge-day';
+      btn.setAttribute('aria-pressed',String(n===selected));btn.dataset.done=completed(n);btn.dataset.locked=!state.start||n>now;
+      btn.setAttribute('aria-label','Day '+n+': '+t[0]+(completed(n)?', completed':''));
+      var strong=document.createElement('strong');strong.textContent=completed(n)?'✓':String(n);
+      var label=document.createElement('span');label.textContent='Day '+n;
+      btn.appendChild(strong);btn.appendChild(label);
+      btn.addEventListener('click',function(){selected=n;render();});
+      document.getElementById('challenge-grid').appendChild(btn);
+    });
+    text('selected-day','DAY '+selected+' / 30');
+    text('daily-task-heading',tasks[selected-1][0]);
+    text('daily-task-desc',tasks[selected-1][1]);
+    text('daily-reflection-prompt',tasks[selected-1][2]);
+    document.getElementById('day-note').value=String(state.notes[selected]||'');
+    var allow=!!state.start&&selected<=now;
+    document.getElementById('day-note').disabled=!allow;
+    document.getElementById('save-note').disabled=!allow;
+    var mark=document.getElementById('mark-done');mark.disabled=!allow;
+    mark.textContent=!state.start?'Start to check in':selected>now?'Opens on Day '+selected:completed(selected)?'✓ Completed — Undo check-in':'Mark Day '+selected+' Complete';
+    text('note-feedback','');
+  }
+  document.getElementById('start-challenge').addEventListener('click',function(){
+    if(state.start)return;state.start=dayISO();selected=1;save();render();
+    document.getElementById('daily-task-heading').focus();
+  });
+  document.getElementById('mark-done').addEventListener('click',function(){
+    if(!state.start||selected>dayNum())return;
+    if(completed(selected))state.done=state.done.filter(function(n){return n!==selected;});
+    else state.done.push(selected);
+    state.done.sort(function(a,b){return a-b;});save();render();
+  });
+  document.getElementById('save-note').addEventListener('click',function(){
+    if(!state.start||selected>dayNum())return;
+    state.notes[selected]=document.getElementById('day-note').value.slice(0,1000);
+    if(save())text('note-feedback','Saved locally.');
+  });
+  document.getElementById('export-progress').addEventListener('click',function(){
+    var data={app:'The Awake Club 30-Day Challenge',savedAt:dayISO(),start:state.start,done:state.done,notes:state.notes};
+    var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+    var url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='awake-club-progress.json';a.click();setTimeout(function(){URL.revokeObjectURL(url);},1500);
+  });
+  document.getElementById('reset-progress').addEventListener('click',function(){
+    if(!window.confirm('Erase this challenge progress and all reflections on this browser? Export first if you want a backup.'))return;
+    state={start:null,done:[],notes:{}};selected=1;try{localStorage.removeItem(key);}catch(e){}render();
+  });
+  if(state.start)selected=Math.min(dayNum(),30);
+  render();
+})();
+</script>
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">The <span class="accent">Awake</span> Club</a>
+        <p class="footer-tagline">Every Day Forward</p>
+        <p>A discipline-first lifestyle movement for people who are done drifting and ready to build every day forward.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="start-here.html">Start Here</a></li>
+          <li><a href="find-your-4am.html">Find Your 4AM</a></li>
+          <li><a href="challenge.html">30-Day Challenge</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="playlists.html">Playlists</a></li>
+          <li><a href="daily-growth.html">Daily Growth</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <ul>
+          <li><a href="find-your-4am.html#quiz">4AM Quiz</a></li>
+          <li><a href="show-up-structure.html">Find Your Show-Up Structure</a></li>
+          <li><a href="tools.html#starter-plan">7-Day Plan</a></li>
+          <li><a href="tools.html#gym-timer">Gym Focus Timer</a></li>
+          <li><a href="tools.html#daily-checklist">Daily Checklist</a></li>
+          <li><a href="tools.html">All Tools</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Core Beliefs</h4>
+        <ul>
+          <li><a href="start-here.html">Act, Don't React.</a></li>
+          <li><a href="start-here.html">The Habit Before the Intensity.</a></li>
+          <li><a href="start-here.html">Every Day Forward.</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-disclaimer">
+        The Awake Club is an independent personal development project. Content is shared for informational and motivational purposes only and is not medical advice, fitness instruction, financial guidance, or professional coaching. Consult qualified professionals before beginning any new training program or making health-related decisions.
+      </p>
+      <p class="footer-copy">© 2025 theawakeclub.com</p>
+    </div>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

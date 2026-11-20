@@ -1041,3 +1041,15 @@ article.article-card { cursor: default; }
   .sus-stats-row { grid-template-columns: 1fr; }
   .sus-wrapper-grid { grid-template-columns: 1fr; }
 }
+
+
+/* The Awake Club: real free content and 30-day challenge invitation */
+.awake-challenge-promo{background:#23180f;border-top:1px solid #6b4127;border-bottom:1px solid #6b4127;padding:39px 0}
+.awake-promo-layout{display:flex;align-items:center;justify-content:space-between;gap:25px;flex-wrap:wrap}
+.awake-promo-layout>div{max-width:720px}
+.awake-promo-layout h2{font-family:var(--font-display);font-size:clamp(1.5rem,3.5vw,2.6rem);color:#fff;text-transform:uppercase;margin:4px 0 10px}
+.awake-promo-layout p:not(.section-label){color:#ded2c7;font-size:.98rem}
+.ac-direct-download,.ac-newsletter-pending{padding:18px 22px;background:#222;border:1px solid #a6643b;border-radius:9px}
+.ac-direct-download p,.ac-newsletter-pending p{color:#e3e0dd;font-size:.91rem;margin:0 0 15px}
+.ac-direct-download a,.ac-newsletter-pending a{display:inline-flex}
+@media (prefers-reduced-motion: reduce){html:focus-within{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
